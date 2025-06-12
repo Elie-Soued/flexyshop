@@ -1,0 +1,19 @@
+<div class="container text-center">
+  <h1>FlexyShop</h1>
+  <div class="row row-cols-4">
+    @for(category of categories; track category){
+    <div class="col">
+      <a
+        class="text-decoration-none text-black"
+        href="section/{{ category.name }}"
+      >
+        <img style="width: 100px" [src]="category.image" />
+        <p>
+          {{ category.name }}
+        </p>
+      </a>
+    </div>
+
+    }
+  </div>
+</div>

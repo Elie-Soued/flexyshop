@@ -1,0 +1,30 @@
+<div class="container text-center">
+  <h1>{{ section }}</h1>
+
+  @if(products.length){
+  <div class="row row-cols-4">
+    @for(product of products; track product){
+    <div class="col">
+      <a
+        href="{{ section }}/{{ product.id }}"
+        class="text-decoration-none text-black"
+      >
+        <img style="width: 100px" [src]="product.images[0]" />
+        <p>
+          {{ product.title }}
+        </p>
+      </a>
+    </div>
+
+    }
+  </div>
+
+  } @else {
+
+  <p>Sorry... we are currently out of stock</p>
+  }
+
+  <a href="/">
+    <button type="button" class="btn btn-primary">Back to main menu</button>
+  </a>
+</div>

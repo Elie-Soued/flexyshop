@@ -1,0 +1,45 @@
+<div class="p-3">
+  <div class="col-12">
+    <h4 class="text-center">{{ product.title }}</h4>
+  </div>
+
+  <div class="col-12 d-flex justify-content-end">
+    <button class="btn btn-light">
+      <fa-icon [icon]="cart"></fa-icon>
+    </button>
+  </div>
+
+  <div class="col-12 d-flex col">
+    <div id="info" class="col-6">
+      <h6><b></b>About the product</h6>
+      <p><b>Brand</b> {{ product.brand }}</p>
+      <p><b>Description :</b> {{ product.description }}</p>
+      <p><b>Price :</b> {{ product.price | currency : "EUR" }}</p>
+      <p><b>Rating :</b> {{ product.rating }}</p>
+      <p><b>Return policy :</b> {{ product.returnPolicy }}</p>
+      <p><b>Warranty information :</b> {{ product.warrantyInformation }}</p>
+    </div>
+    <div id="images" class="col-6 d-flex justify-content-center">
+      <img [src]="product.images[0]" style="max-width: 400px" />
+    </div>
+  </div>
+
+  <div class="col-12">
+    <h6>Reviews</h6>
+    @for(review of product.reviews; track review){
+
+    <div style="border-top: 1px solid black">
+      <p>{{ review.reviewerName }} on the {{ review.date | date }}</p>
+      <p>{{ review.comment }}</p>
+      <p>Rating : {{ review.rating }} / 5</p>
+    </div>
+
+    }
+  </div>
+
+  <div class="col-12 d-flex justify-content-center">
+    <a href="section/{{ section }}">
+      <button class="btn btn-primary">Back to {{ section }}</button>
+    </a>
+  </div>
+</div>
