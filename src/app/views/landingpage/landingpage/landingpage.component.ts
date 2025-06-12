@@ -5,12 +5,12 @@ interface Product {
   id: number;
   title: string;
   category: string;
-  images: string[];
+  thumbnail: string;
 }
 
 interface CategoryWithImage {
   name: string;
-  image: string;
+  thumbnail: string;
 }
 
 @Component({
@@ -35,7 +35,6 @@ export class LandingpageComponent {
       .subscribe({
         next: (response) => {
           this.allProducts = response.products;
-          //console.log('this.allProducts :>> ', this.allProducts);
           this.setCategories(this.allProducts);
         },
         error: (err) => console.error('Error fetching products:', err),
@@ -47,18 +46,16 @@ export class LandingpageComponent {
 
     products.forEach((product) => {
       if (!categoryMap.has(product.category)) {
-        categoryMap.set(product.category, product.images[0]);
+        categoryMap.set(product.category, product.thumbnail);
       }
     });
 
     // Convert Map to an array of objects
     this.categories = Array.from(categoryMap.entries()).map(
-      ([name, image]) => ({
+      ([name, thumbnail]) => ({
         name,
-        image,
+        thumbnail,
       })
     );
-
-    //console.log('Categories with images:', this.categories);
   }
 }

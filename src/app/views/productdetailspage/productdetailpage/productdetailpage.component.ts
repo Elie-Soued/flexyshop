@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-productdetailpage',
@@ -16,6 +16,7 @@ export class ProductdetailpageComponent {
   section: string = '';
   product: any = {};
   cart = faCartPlus;
+  back = faArrowLeft;
 
   constructor(private activateRoute: ActivatedRoute, private http: HttpClient) {
     this.activateRoute.params.subscribe((values) => {
@@ -29,13 +30,11 @@ export class ProductdetailpageComponent {
   }
 
   getProductDetails() {
-    console.log('do I get here?');
     this.http
       .get(`https://dummyjson.com/products/${this.productID}`)
       .subscribe({
         next: (response: any) => {
           this.product = response;
-          console.log('this.product :>> ', this.product);
         },
         error: (err) => console.error('Error fetching products:', err),
       });

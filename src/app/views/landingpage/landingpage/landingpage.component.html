@@ -1,19 +1,27 @@
-<div class="container text-center">
-  <h1>FlexyShop</h1>
-  <div class="row row-cols-4">
+<div class="container py-5">
+  <div class="d-flex align-items-center gap-3 py-4">
+    <h1 class="mb-0 fw-bold">FlexyShop</h1>
+    <img src="/cart.png" style="width: 50px" />
+    <h5 class="mb-0" style="color: grey">Better than Amazon</h5>
+  </div>
+  <div
+    class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-4 justify-content-center"
+  >
     @for(category of categories; track category){
     <div class="col">
       <a
-        class="text-decoration-none text-black"
         href="section/{{ category.name }}"
+        class="text-decoration-none text-dark d-block text-center border rounded shadow-sm p-3 h-100 hover-shadow"
       >
-        <img style="width: 100px" [src]="category.image" />
-        <p>
-          {{ category.name }}
-        </p>
+        <img
+          [src]="category.thumbnail"
+          alt="{{ category.name }}"
+          class="img-fluid mb-3"
+          style="max-height: 100px; object-fit: contain"
+        />
+        <p class="mb-0 fw-medium">{{ category.name }}</p>
       </a>
     </div>
-
     }
   </div>
 </div>
