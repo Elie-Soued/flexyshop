@@ -6,11 +6,19 @@
     </div>
     <div class="col-auto text-end">
       <a href="section/{{ section }}" class="p-1">
-        <button class="btn btn-outline-secondary" title="Go back">
+        <button
+          class="btn btn-light"
+          style="background-color: white; border: none"
+          title="Go back"
+        >
           <fa-icon [icon]="back"></fa-icon>
         </button>
       </a>
-      <button class="btn btn-outline-secondary" title="Add to cart">
+      <button
+        class="btn btn-light"
+        title="Add to cart"
+        style="background-color: white; border: none"
+      >
         <fa-icon [icon]="cart"></fa-icon>
       </button>
     </div>
@@ -27,6 +35,21 @@
         <li><strong>Return policy:</strong> {{ product.returnPolicy }}</li>
         <li><strong>Warranty:</strong> {{ product.warrantyInformation }}</li>
       </ul>
+      <div class="row mt-5">
+        <div class="col">
+          <h5 class="mb-4">Comments</h5>
+          @for(review of product.reviews; track review){
+          <div class="border-top pt-3 mb-3">
+            <p class="mb-1">
+              <strong>{{ review.reviewerName }}</strong> on
+              {{ review.date | date }}
+            </p>
+            <p class="mb-1">{{ review.comment }}</p>
+            <p class="mb-0 text-muted">Rating: {{ review.rating }} / 5</p>
+          </div>
+          }
+        </div>
+      </div>
     </div>
 
     <!-- Product Image -->
@@ -37,22 +60,6 @@
         class="img-fluid rounded shadow"
         style="max-width: 100%; max-height: 400px; object-fit: contain"
       />
-    </div>
-  </div>
-
-  <!-- Reviews -->
-  <div class="row mt-5">
-    <div class="col">
-      <h5 class="mb-4">Reviews</h5>
-      @for(review of product.reviews; track review){
-      <div class="border-top pt-3 mb-3">
-        <p class="mb-1">
-          <strong>{{ review.reviewerName }}</strong> on {{ review.date | date }}
-        </p>
-        <p class="mb-1">{{ review.comment }}</p>
-        <p class="mb-0 text-muted">Rating: {{ review.rating }} / 5</p>
-      </div>
-      }
     </div>
   </div>
 </div>
