@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCartPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import { type Product } from '../../../interface';
+import { type Product } from '../../interface';
 
 @Component({
   selector: 'app-productdetailpage',

@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import { setInitialStore } from '../../../store/store.actions';
-import { type Product, type CategoryWithImage } from '../../../interface';
+import { setInitialStore } from '../../store/store.actions';
+import { type Product, type CategoryWithImage } from '../../interface';
 import { RouterModule } from '@angular/router';
 
 @Component({

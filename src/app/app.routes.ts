@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { LandingpageComponent } from './views/landingpage/landingpage/landingpage.component';
-import { ProductspageComponent } from './views/productspage/productspage/productspage.component';
-import { ProductdetailpageComponent } from './views/productdetailspage/productdetailpage/productdetailpage.component';
-import { CheckoutpageComponent } from './views/checkoutpage/checkoutpage/checkoutpage.component';
+import { LandingpageComponent } from './views/landingpage/landingpage.component';
+import { ProductspageComponent } from './views/productspage/productspage.component';
+import { CheckoutpageComponent } from './views/checkoutpage/checkoutpage.component';
+import { ProductdetailpageComponent } from './views/productdetailspage/productdetailpage.component';
 
 export const routes: Routes = [
   { path: '', component: LandingpageComponent },
