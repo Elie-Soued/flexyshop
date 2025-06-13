@@ -1,9 +1,10 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCartPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import { type Product } from '../../../interface';
 
 @Component({
   selector: 'app-productdetailpage',
@@ -14,11 +15,14 @@ import { faCartPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 export class ProductdetailpageComponent {
   productID: number = 0;
   section: string = '';
-  product: any = {};
+  product: any;
   cart = faCartPlus;
   back = faArrowLeft;
 
-  constructor(private activateRoute: ActivatedRoute, private http: HttpClient) {
+  constructor(
+    private activateRoute: ActivatedRoute,
+    private store: Store<{ products: Product[] }>
+  ) {
     this.activateRoute.params.subscribe((values) => {
       this.productID = values['id'];
       this.section = values['section'];
@@ -26,17 +30,20 @@ export class ProductdetailpageComponent {
   }
 
   ngOnInit() {
-    this.getProductDetails();
-  }
-
-  getProductDetails() {
-    this.http
-      .get(`https://dummyjson.com/products/${this.productID}`)
-      .subscribe({
-        next: (response: any) => {
-          this.product = response;
-        },
-        error: (err) => console.error('Error fetching products:', err),
+    this.store
+      .select((state: any) => state.store)
+      .subscribe(({ products }) => {
+        if (!products.length) {
+          this.product = JSON.parse(
+            localStorage.getItem('products') || '[]'
+          ).filter(
+            (product: Product) => product.id === Number(this.productID)
+          )[0];
+        } else {
+          this.product = products.filter(
+            (product: Product) => product.id === Number(this.productID)
+          )[0];
+        }
       });
   }
 }

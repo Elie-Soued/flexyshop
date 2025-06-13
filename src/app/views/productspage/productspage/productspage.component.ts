@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import { type Product } from '../../../interface';
 
 @Component({
   selector: 'app-productspage',
@@ -12,27 +13,31 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 })
 export class ProductspageComponent {
   section: string = '';
-  products: any;
+  products: Product[] = [];
   home = faHome;
 
-  constructor(private activateRoute: ActivatedRoute, private http: HttpClient) {
+  constructor(
+    private activateRoute: ActivatedRoute,
+    private store: Store<{ store: {} }>
+  ) {
     this.activateRoute.params.subscribe((values) => {
       this.section = values['name'];
     });
   }
 
   ngOnInit() {
-    this.getProductsByCategory();
-  }
-
-  getProductsByCategory() {
-    this.http
-      .get(`https://dummyjson.com/products/category/${this.section}`)
-      .subscribe({
-        next: (response: any) => {
-          this.products = response.products;
-        },
-        error: (err) => console.error('Error fetching products:', err),
+    this.store
+      .select((state: any) => state.store)
+      .subscribe(({ products }) => {
+        if (!products.length) {
+          this.products = JSON.parse(
+            localStorage.getItem('products') || '[]'
+          ).filter((product: Product) => product.category === this.section);
+        } else {
+          this.products = products.filter(
+            (product: Product) => product.category === this.section
+          );
+        }
       });
   }
 }
