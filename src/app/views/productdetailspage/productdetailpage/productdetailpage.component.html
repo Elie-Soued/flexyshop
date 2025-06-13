@@ -6,11 +6,11 @@
     </div>
     <div class="col-auto text-end">
       <a href="section/{{ section }}" class="p-1">
-        <button class="btn btn-outline-secondary">
+        <button class="btn btn-outline-secondary" title="Go back">
           <fa-icon [icon]="back"></fa-icon>
         </button>
       </a>
-      <button class="btn btn-outline-secondary">
+      <button class="btn btn-outline-secondary" title="Add to cart">
         <fa-icon [icon]="cart"></fa-icon>
       </button>
     </div>
@@ -20,9 +20,7 @@
   <div class="row gy-4 align-items-start">
     <!-- Text Info -->
     <div class="col-12 col-lg-6">
-      <h5 class="mb-4">About the product</h5>
       <ul class="list-unstyled">
-        <li><strong>Brand:</strong> {{ product.brand }}</li>
         <li><strong>Description:</strong> {{ product.description }}</li>
         <li><strong>Price:</strong> {{ product.price | currency : "EUR" }}</li>
         <li><strong>Rating:</strong> {{ product.rating }} / 5</li>
