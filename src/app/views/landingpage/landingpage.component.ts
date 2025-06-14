@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import { setInitialStore } from '../../store/store.actions';
+import { setProducts } from '../../store/store.actions';
 import { type Product, type CategoryWithImage } from '../../interface';
 import { RouterModule } from '@angular/router';
 
@@ -21,14 +21,9 @@ export class LandingpageComponent {
   constructor(private http: HttpClient, private store: Store<{ store: {} }>) {}
 
   ngOnInit() {
-    this.getAllProducts();
-  }
-
-  getAllProducts() {
     if (localStorage.getItem('products')) {
-      console.log('getting products from localstorage');
       this.allProducts = JSON.parse(localStorage.getItem('products') || '[]');
-      this.store.dispatch(setInitialStore({ products: this.allProducts }));
+      this.store.dispatch(setProducts({ products: this.allProducts }));
       this.setCategories(this.allProducts);
     } else {
       this.http
@@ -38,9 +33,7 @@ export class LandingpageComponent {
         .subscribe({
           next: (response) => {
             this.allProducts = response.products;
-            this.store.dispatch(
-              setInitialStore({ products: this.allProducts })
-            );
+            this.store.dispatch(setProducts({ products: this.allProducts }));
             localStorage.setItem('products', JSON.stringify(this.allProducts));
             this.setCategories(this.allProducts);
           },

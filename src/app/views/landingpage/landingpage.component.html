@@ -14,8 +14,10 @@
 
     <h5 class="mb-0 text-muted">Shop smart. Stay flex.</h5>
 
-    <a [routerLink]="['/checkout']" class="ms-auto p-2" title="Checkout">
-      <img src="/cart.png" style="width: 50px" />
+    <a [routerLink]="['/checkout']" class="ms-auto p-2">
+      <button type="button" class="btn" title="Home">
+        <fa-icon [icon]="cart" class="fs-3"></fa-icon>
+      </button>
     </a>
   </nav>
 
