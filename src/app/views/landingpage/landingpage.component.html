@@ -14,7 +14,13 @@
 
     <a [routerLink]="['/checkout']" class="ms-auto p-2">
       <button type="button" class="btn" title="Home">
-        <fa-icon [icon]="cart" class="fs-3"></fa-icon>
+        <div class="cart-wrapper">
+          <fa-icon [icon]="cartIcon" class="fs-3"></fa-icon>
+          @if(cart && cart.length){
+          <span class="cart-indicator">{{ cart.length }}</span>
+
+          }
+        </div>
       </button>
     </a>
   </nav>

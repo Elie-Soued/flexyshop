@@ -4,7 +4,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { setProducts } from '../../store/store.actions';
-import { type Product, type CategoryWithImage } from '../../interface';
+import {
+  type Product,
+  type CategoryWithImage,
+  type Cart,
+} from '../../interface';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -15,7 +19,8 @@ import { RouterModule } from '@angular/router';
 })
 export class LandingpageComponent {
   categories: CategoryWithImage[] = [];
-  cart = faCartShopping;
+  cartIcon = faCartShopping;
+  cart: Cart[] = [];
 
   constructor(private http: HttpClient, private store: Store<{ store: {} }>) {}
 
@@ -40,6 +45,12 @@ export class LandingpageComponent {
               error: (err) => console.error('Error fetching products:', err),
             });
         }
+      });
+
+    this.store
+      .select((state: any) => state.cart)
+      .subscribe(({ items }) => {
+        this.cart = items;
       });
   }
 
