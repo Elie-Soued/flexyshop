@@ -1,1 +1,17 @@
-<p>checkoutpage works!</p>
+<a [routerLink]="['/']">
+  <button type="button" class="btn" title="Home">
+    <fa-icon [icon]="home" class="fs-3"></fa-icon>
+  </button>
+</a>
+
+@for(item of cart; track item){
+
+<p>name : {{ item.title }}</p>
+<p>Quantity : {{ item.buyCount }}</p>
+<p>Unit price :{{ item.price | currency : "EUR" }}</p>
+<p>Sub total: {{ item.price * item.buyCount | currency : "EUR" }}</p>
+
+<hr />
+
+<p>Grand Total: {{ grandTotal | currency : "EUR" }}</p>
+}
