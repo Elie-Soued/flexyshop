@@ -45,4 +45,10 @@ interface CategoryWithImage {
   thumbnail: string;
 }
 
-export { type Product, type CategoryWithImage };
+interface Cart {
+  id: number;
+  buyCount: number;
+  title: string;
+  price: number;
+}
+export { type Product, type CategoryWithImage, type Cart };

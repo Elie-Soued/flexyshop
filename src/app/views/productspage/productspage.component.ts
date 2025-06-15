@@ -6,7 +6,6 @@ import { Store } from '@ngrx/store';
 import { type Product } from '../../interface';
 import { type AppState } from '../../store/store.reducer';
 import { RouterModule } from '@angular/router';
-import { setProducts } from '../../store/store.actions';
 
 @Component({
   selector: 'app-productspage',
@@ -17,6 +16,7 @@ import { setProducts } from '../../store/store.actions';
 export class ProductspageComponent {
   section: string = '';
   products: Product[] = [];
+  categoryProducts: Product[] = [];
   home = faHome;
 
   constructor(
@@ -32,17 +32,14 @@ export class ProductspageComponent {
     this.store
       .select((state: any) => state.products)
       .subscribe(({ products }) => {
-        if (!products.length) {
-          const products = JSON.parse(localStorage.getItem('products') || '[]');
-          this.products = products.filter(
-            (product: Product) => product.category === this.section
-          );
-          this.store.dispatch(setProducts({ products }));
+        if (products.length) {
+          this.products = products;
         } else {
-          this.products = products.filter(
-            (product: Product) => product.category === this.section
-          );
+          this.products = JSON.parse(localStorage.getItem('products') || '[]');
         }
+        this.categoryProducts = this.products.filter(
+          (product: Product) => product.category === this.section
+        );
       });
   }
 }

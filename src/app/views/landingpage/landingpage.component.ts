@@ -14,7 +14,6 @@ import { RouterModule } from '@angular/router';
   styleUrl: './landingpage.component.css',
 })
 export class LandingpageComponent {
-  allProducts: Product[] = [];
   categories: CategoryWithImage[] = [];
   cart = faCartShopping;
 
@@ -22,9 +21,7 @@ export class LandingpageComponent {
 
   ngOnInit() {
     if (localStorage.getItem('products')) {
-      this.allProducts = JSON.parse(localStorage.getItem('products') || '[]');
-      this.store.dispatch(setProducts({ products: this.allProducts }));
-      this.setCategories(this.allProducts);
+      this.updateProduct(JSON.parse(localStorage.getItem('products') || '[]'));
     } else {
       this.http
         .get<{ products: Product[] }>(
@@ -32,14 +29,17 @@ export class LandingpageComponent {
         )
         .subscribe({
           next: (response) => {
-            this.allProducts = response.products;
-            this.store.dispatch(setProducts({ products: this.allProducts }));
-            localStorage.setItem('products', JSON.stringify(this.allProducts));
-            this.setCategories(this.allProducts);
+            this.updateProduct(response.products);
+            localStorage.setItem('products', JSON.stringify(response.products));
           },
           error: (err) => console.error('Error fetching products:', err),
         });
     }
+  }
+
+  updateProduct(products: Product[]) {
+    this.setCategories(products);
+    this.store.dispatch(setProducts({ products }));
   }
 
   setCategories(products: Product[]) {

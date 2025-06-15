@@ -1,16 +1,16 @@
 <div class="container py-5">
   <div class="d-flex justify-content-between align-items-center py-4">
     <h1 class="mb-0 fw-bold">{{ section }}</h1>
-    <a href="/">
+    <a [routerLink]="['/']">
       <button type="button" class="btn" title="Home">
         <fa-icon [icon]="home" class="fs-3"></fa-icon>
       </button>
     </a>
   </div>
 
-  @if(products.length){
+  @if(categoryProducts.length){
   <div class="vstack gap-4">
-    @for(product of products; track product){
+    @for(product of categoryProducts; track product){
     <div
       class="row align-items-center border rounded shadow-sm p-3 mx-1 mx-md-0"
       style="background-color: white"

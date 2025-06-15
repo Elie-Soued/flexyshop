@@ -1,16 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
-import { setProducts, addToCart, removeFromStock } from './store.actions';
-import { type Product } from '../interface';
+import {
+  setProducts,
+  setCart,
+  addToCart,
+  removeFromStock,
+} from './store.actions';
+import { type Product, type Cart } from '../interface';
 
 export interface productsState {
   products: Product[];
 }
 
 export interface cartState {
-  items: {
-    id: number;
-    buyCount: number;
-  }[];
+  items: Cart[];
 }
 
 export interface AppState {
@@ -20,7 +22,7 @@ export interface AppState {
 
 const productsInitialState: productsState = { products: [] };
 
-const cartInitialState = { items: [] };
+const cartInitialState: cartState = { items: [] };
 
 export const productsReducer = createReducer(
   productsInitialState,
@@ -35,22 +37,30 @@ export const productsReducer = createReducer(
 
 export const cartReducer = createReducer(
   cartInitialState,
-  on(addToCart, (state: any, { id }) => {
-    const existingItem = state.items.find((item: any) => item.id === id);
 
-    console.log('state :>> ', state);
+  on(setCart, (state, { items }) => ({ ...state, items })),
+
+  on(addToCart, (state: any, { id, price, title }) => {
+    const existingItem = state.items.find((item: any) => item.id === id);
 
     if (existingItem) {
       return {
         ...state,
         items: state.items.map((item: any) =>
-          item.id === id ? { ...item, buyCount: item.buyCount + 1 } : item
+          item.id === id
+            ? {
+                ...item,
+                buyCount: item.buyCount + 1,
+                price: item.price,
+                title: item.title,
+              }
+            : item
         ),
       };
     } else {
       return {
         ...state,
-        items: [...state.items, { id: id, buyCount: 1 }],
+        items: [...state.items, { id: id, buyCount: 1, price, title }],
       };
     }
   })

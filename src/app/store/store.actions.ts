@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { type Product } from '../interface';
+import { type Product, Cart } from '../interface';
 
 export const setProducts = createAction(
   '[store] setProducts',
@@ -13,5 +13,10 @@ export const removeFromStock = createAction(
 
 export const addToCart = createAction(
   '[cart] addToCart',
-  props<{ id: number }>()
+  props<{ id: number; price: number; title: string }>()
+);
+
+export const setCart = createAction(
+  '[cart] setCart',
+  props<{ items: Cart[] }>()
 );
