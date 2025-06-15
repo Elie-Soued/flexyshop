@@ -32,12 +32,7 @@ export class ProductspageComponent {
     this.store
       .select((state: any) => state.products)
       .subscribe(({ products }) => {
-        if (products.length) {
-          this.products = products;
-        } else {
-          this.products = JSON.parse(localStorage.getItem('products') || '[]');
-        }
-        this.categoryProducts = this.products.filter(
+        this.categoryProducts = products.filter(
           (product: Product) => product.category === this.section
         );
       });

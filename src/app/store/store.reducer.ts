@@ -59,7 +59,6 @@ export const cartReducer = createReducer(
       };
     } else {
       return {
-        ...state,
         items: [...state.items, { id: id, buyCount: 1, price, title }],
       };
     }

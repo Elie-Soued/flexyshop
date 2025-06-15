@@ -6,12 +6,7 @@ import { faCartPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { type Product, type Cart } from '../../interface';
 import { type AppState } from '../../store/store.reducer';
-import {
-  setProducts,
-  setCart,
-  addToCart,
-  removeFromStock,
-} from '../../store/store.actions';
+import { setCart, addToCart, removeFromStock } from '../../store/store.actions';
 
 @Component({
   selector: 'app-productdetailpage',
@@ -42,28 +37,7 @@ export class ProductdetailpageComponent {
     this.store
       .select((state: any) => state.products)
       .subscribe(({ products }) => {
-        if (products.length) {
-          this.products = products;
-          localStorage.setItem('products', JSON.stringify(products));
-        } else {
-          this.products = JSON.parse(localStorage.getItem('products') || '[]');
-          this.store.dispatch(setProducts({ products: this.products }));
-        }
-        this.product = this.getProduct(this.products);
-      });
-
-    this.store
-      .select((state: any) => state.cart)
-      .subscribe(({ items }) => {
-        if (items.length) {
-          this.cart = items;
-          localStorage.setItem('cart', JSON.stringify(items));
-        } else {
-          this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
-          if (this.cart.length) {
-            this.store.dispatch(setCart({ items: this.cart }));
-          }
-        }
+        this.product = this.getProduct(products);
       });
   }
 

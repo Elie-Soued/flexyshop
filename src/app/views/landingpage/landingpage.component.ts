@@ -20,26 +20,27 @@ export class LandingpageComponent {
   constructor(private http: HttpClient, private store: Store<{ store: {} }>) {}
 
   ngOnInit() {
-    if (localStorage.getItem('products')) {
-      this.updateProduct(JSON.parse(localStorage.getItem('products') || '[]'));
-    } else {
-      this.http
-        .get<{ products: Product[] }>(
-          'https://dummyjson.com/products?limit=194'
-        )
-        .subscribe({
-          next: (response) => {
-            this.updateProduct(response.products);
-            localStorage.setItem('products', JSON.stringify(response.products));
-          },
-          error: (err) => console.error('Error fetching products:', err),
-        });
-    }
-  }
-
-  updateProduct(products: Product[]) {
-    this.setCategories(products);
-    this.store.dispatch(setProducts({ products }));
+    this.store
+      .select((state: any) => state.products)
+      .subscribe(({ products }) => {
+        if (products.length) {
+          this.setCategories(products);
+        } else {
+          this.http
+            .get<{ products: Product[] }>(
+              'https://dummyjson.com/products?limit=194'
+            )
+            .subscribe({
+              next: (response) => {
+                this.store.dispatch(
+                  setProducts({ products: response.products })
+                );
+                this.setCategories(response.products);
+              },
+              error: (err) => console.error('Error fetching products:', err),
+            });
+        }
+      });
   }
 
   setCategories(products: Product[]) {
