@@ -2,11 +2,12 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCartPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { type Product, type Cart } from '../../interface';
 import { type AppState } from '../../store/store.reducer';
-import { setCart, addToCart, removeFromStock } from '../../store/store.actions';
+import { addToCart, removeFromStock } from '../../store/store.actions';
+import Toast from 'bootstrap/js/dist/toast.js';
 
 @Component({
   selector: 'app-productdetailpage',
@@ -18,10 +19,9 @@ export class ProductdetailpageComponent {
   productID: number = 0;
   section: string = '';
   product!: any;
-  products!: Product[];
   cart!: Cart[];
   cartIcon = faCartPlus;
-  back = faArrowLeft;
+  toast!: Toast;
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -42,19 +42,49 @@ export class ProductdetailpageComponent {
   }
 
   buy() {
-    this.store.dispatch(removeFromStock({ id: this.product.id }));
-    this.store.dispatch(
-      addToCart({
-        id: this.product.id,
-        price: this.product.price,
-        title: this.product.title,
-      })
-    );
+    if (this.product.stock > 0) {
+      this.store.dispatch(removeFromStock({ id: this.product.id }));
+      this.store.dispatch(
+        addToCart({
+          id: this.product.id,
+          price: this.product.price,
+          title: this.product.title,
+        })
+      );
+      this.toast = Toast.getOrCreateInstance(
+        document.getElementById('toastSuccess')!,
+        {
+          delay: 750,
+        }
+      );
+    } else {
+      this.toast = Toast.getOrCreateInstance(
+        document.getElementById('toastError')!,
+        {
+          delay: 750,
+        }
+      );
+    }
+    this.toast?.show();
   }
 
-  getProduct(products: any) {
+  debounce(func: Function, timeout = 200) {
+    let timer: any;
+    return () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this);
+      }, timeout);
+    };
+  }
+
+  onBuy() {
+    this.debounce(this.buy)();
+  }
+
+  getProduct(products: Product[]): Product {
     return products.find(
       (product: Product) => product.id === Number(this.productID)
-    );
+    )!;
   }
 }

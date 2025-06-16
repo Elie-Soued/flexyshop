@@ -4,23 +4,52 @@
     <div class="col">
       <h2 class="fw-bold">{{ product.title }}</h2>
     </div>
-    <div class="col-auto text-end">
-      <a [routerLink]="['/section', section]" class="p-1">
+
+    <div
+      class="toast align-items-center bg-success text-white border-0"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+      id="toastSuccess"
+    >
+      <div class="d-flex">
+        <div class="toast-body">This item was added to your cart.</div>
         <button
-          class="btn btn-light"
-          style="background-color: white; border: none"
-          title="Go back"
-        >
-          <fa-icon [icon]="back"></fa-icon>
-        </button>
-      </a>
+          type="button"
+          class="btn-close btn-close-white me-2 m-auto"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+
+    <div
+      class="toast align-items-center bg-danger text-white border-0"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+      id="toastError"
+    >
+      <div class="d-flex">
+        <div class="toast-body">This item is not available anymore.</div>
+        <button
+          type="button"
+          class="btn-close btn-close-white me-2 m-auto"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+
+    <div class="col-auto text-end">
       <button
         class="btn btn-light"
         title="Add to cart"
         style="background-color: white; border: none"
-        (click)="buy()"
+        id="buyButton"
+        (click)="onBuy()"
       >
-        <fa-icon [icon]="cartIcon"></fa-icon>
+        <fa-icon [icon]="cartIcon" class="fs-3"></fa-icon>
       </button>
     </div>
   </div>
@@ -63,4 +92,8 @@
       />
     </div>
   </div>
+
+  <a [routerLink]="['/section', section]">
+    <button class="btn btn-secondary" title="Go back">Back</button>
+  </a>
 </div>

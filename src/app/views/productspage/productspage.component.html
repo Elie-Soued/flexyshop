@@ -38,11 +38,20 @@
       </div>
 
       <!-- Availability Column -->
+
+      @if( product.stock){
       <div class="col-12 col-md-4 text-center text-md-end">
         <span class="badge bg-success"
           >{{ product.stock }} pieces in stock</span
         >
       </div>
+
+      } @else {
+
+      <div class="col-12 col-md-4 text-center text-md-end">
+        <span class="badge bg-danger">Out of stock</span>
+      </div>
+      }
     </div>
     }
   </div>
