@@ -21,6 +21,7 @@ export class LandingpageComponent {
   categories: CategoryWithImage[] = [];
   cartIcon = faCartShopping;
   cart: Cart[] = [];
+  currentYear = new Date().getFullYear();
 
   constructor(private http: HttpClient, private store: Store<{ store: {} }>) {}
 
