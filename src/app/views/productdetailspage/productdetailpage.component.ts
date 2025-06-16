@@ -50,6 +50,7 @@ export class ProductdetailpageComponent {
           id: this.product.id,
           price: this.product.price,
           title: this.product.title,
+          image: this.product.thumbnail,
         })
       );
       this.toast = Toast.getOrCreateInstance(

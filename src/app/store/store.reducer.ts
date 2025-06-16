@@ -40,7 +40,7 @@ export const cartReducer = createReducer(
 
   on(setCart, (state, { items }) => ({ ...state, items })),
 
-  on(addToCart, (state: any, { id, price, title }) => {
+  on(addToCart, (state: any, { id, price, title, image }) => {
     const existingItem = state.items.find((item: any) => item.id === id);
 
     if (existingItem) {
@@ -53,13 +53,14 @@ export const cartReducer = createReducer(
                 buyCount: item.buyCount + 1,
                 price: item.price,
                 title: item.title,
+                image: item.image,
               }
             : item
         ),
       };
     } else {
       return {
-        items: [...state.items, { id: id, buyCount: 1, price, title }],
+        items: [...state.items, { id: id, buyCount: 1, price, title, image }],
       };
     }
   })

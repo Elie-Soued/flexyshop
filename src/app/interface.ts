@@ -50,5 +50,6 @@ interface Cart {
   buyCount: number;
   title: string;
   price: number;
+  image: string;
 }
 export { type Product, type CategoryWithImage, type Cart };

@@ -1,17 +1,66 @@
-<a [routerLink]="['/']">
-  <button type="button" class="btn" title="Home">
-    <fa-icon [icon]="home" class="fs-3"></fa-icon>
-  </button>
-</a>
+<div class="container py-5">
+  <!-- Header -->
+  <div
+    class="d-flex justify-content-between align-items-center py-4 border-bottom"
+  >
+    <h1 class="mb-0 fw-bold">Your Invoice</h1>
+    <a [routerLink]="['/']">
+      <button type="button" class="btn" title="Home">
+        <fa-icon [icon]="home" class="fs-3"></fa-icon>
+      </button>
+    </a>
+  </div>
 
-@for(item of cart; track item){
+  <!-- If cart has items -->
+  @if(cart.length){
+  <div class="table-responsive mt-4">
+    <table class="table table-bordered align-middle text-center">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Title</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Unit Price</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(item of cart; track item){
+        <tr>
+          <td>
+            <img
+              [src]="item.image"
+              alt="{{ item.title }}"
+              style="max-height: 80px"
+            />
+          </td>
+          <td class="fw-semibold">{{ item.title }}</td>
+          <td>{{ item.buyCount }}</td>
+          <td>{{ item.price | currency : "EUR" }}</td>
+          <td class="fw-bold">
+            {{ item.price * item.buyCount | currency : "EUR" }}
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 
-<p>name : {{ item.title }}</p>
-<p>Quantity : {{ item.buyCount }}</p>
-<p>Unit price :{{ item.price | currency : "EUR" }}</p>
-<p>Sub total: {{ item.price * item.buyCount | currency : "EUR" }}</p>
+  <!-- Grand total -->
+  <div class="text-end mt-3">
+    <h4 class="fw-bold">
+      Grand Total:
+      <span>{{ grandTotal | currency : "EUR" }}</span>
+    </h4>
+  </div>
+  }
 
-<hr />
-
-<p>Grand Total: {{ grandTotal | currency : "EUR" }}</p>
-}
+  <!-- If cart is empty -->
+  @else {
+  <div class="text-center mt-5">
+    <p class="text-muted fs-5">
+      Your cart is empty :) Go do some shopping and come back!
+    </p>
+  </div>
+  }
+</div>
