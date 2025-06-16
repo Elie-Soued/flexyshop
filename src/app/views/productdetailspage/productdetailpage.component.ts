@@ -2,7 +2,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faStar } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { type Product, type Cart } from '../../interface';
 import { type AppState } from '../../store/store.reducer';
@@ -22,6 +22,7 @@ export class ProductdetailpageComponent {
   cart!: Cart[];
   cartIcon = faCartPlus;
   toast!: Toast;
+  star = faStar;
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -86,5 +87,9 @@ export class ProductdetailpageComponent {
     return products.find(
       (product: Product) => product.id === Number(this.productID)
     )!;
+  }
+
+  getRange(n: number): number[] {
+    return Array.from({ length: Math.floor(n) }, (_, i) => i);
   }
 }

@@ -61,21 +61,25 @@
       <ul class="list-unstyled">
         <li><strong>Description:</strong> {{ product.description }}</li>
         <li><strong>Price:</strong> {{ product.price | currency : "EUR" }}</li>
-        <li><strong>Rating:</strong> {{ product.rating }} / 5</li>
         <li><strong>Return policy:</strong> {{ product.returnPolicy }}</li>
         <li><strong>Warranty:</strong> {{ product.warrantyInformation }}</li>
       </ul>
       <div class="row mt-5">
         <div class="col">
           <h5 class="mb-4">Comments</h5>
-          @for(review of product.reviews; track review){
+          @for (review of product.reviews; track review) {
           <div class="border-top pt-3 mb-3">
             <p class="mb-1">
               <strong>{{ review.reviewerName }}</strong> on
               {{ review.date | date }}
             </p>
             <p class="mb-1">{{ review.comment }}</p>
-            <p class="mb-0 text-muted">Rating: {{ review.rating }} / 5</p>
+
+            @for (i of getRange(review.rating); track i) {
+            <fa-icon [icon]="star" style="color: gold"></fa-icon>
+            } @for (i of getRange(5 - review.rating); track i) {
+            <fa-icon [icon]="star" style="color: lightgrey"></fa-icon>
+            }
           </div>
           }
         </div>
