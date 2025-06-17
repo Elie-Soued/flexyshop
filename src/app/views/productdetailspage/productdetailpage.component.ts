@@ -24,11 +24,13 @@ export class ProductdetailpageComponent {
   toast!: Toast;
   star = faStar;
   home = faHome;
+  throttledBuy: () => void;
 
   constructor(
     private activateRoute: ActivatedRoute,
     private store: Store<AppState>
   ) {
+    this.throttledBuy = this.throttle(this.buy.bind(this), 1000);
     this.activateRoute.params.subscribe((values) => {
       this.productID = values['id'];
       this.section = values['section'];
@@ -57,32 +59,33 @@ export class ProductdetailpageComponent {
       this.toast = Toast.getOrCreateInstance(
         document.getElementById('toastSuccess')!,
         {
-          delay: 750,
+          delay: 500,
         }
       );
     } else {
       this.toast = Toast.getOrCreateInstance(
         document.getElementById('toastError')!,
         {
-          delay: 750,
+          delay: 500,
         }
       );
     }
     this.toast?.show();
   }
 
-  debounce(func: Function, timeout = 200) {
-    let timer: any;
+  throttle(func: Function, limit: number) {
+    let inThrottle: boolean;
     return () => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
+      if (!inThrottle) {
         func.apply(this);
-      }, timeout);
+        inThrottle = true;
+        setTimeout(() => (inThrottle = false), limit);
+      }
     };
   }
 
   onBuy() {
-    this.debounce(this.buy)();
+    this.throttledBuy();
   }
 
   getProduct(products: Product[]): Product {
