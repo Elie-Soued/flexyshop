@@ -38,6 +38,7 @@ export class LandingpageComponent {
             )
             .subscribe({
               next: (response) => {
+                this.replaceImages(response.products);
                 this.store.dispatch(
                   setProducts({ products: response.products })
                 );
@@ -71,5 +72,11 @@ export class LandingpageComponent {
         thumbnail,
       })
     );
+  }
+
+  replaceImages(products: Product[]) {
+    products.forEach((product) => {
+      product.thumbnail = `https://flexyshopimages.pilexlaflex.com/images/${product.id}.webp`;
+    });
   }
 }
