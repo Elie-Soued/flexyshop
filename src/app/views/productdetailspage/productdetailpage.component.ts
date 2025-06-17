@@ -8,6 +8,8 @@ import { type Product, type Cart } from '../../interface';
 import { type AppState } from '../../store/store.reducer';
 import { addToCart, removeFromStock } from '../../store/store.actions';
 import Toast from 'bootstrap/js/dist/toast.js';
+import { ProductsService } from '../../services/products.service';
+import { UtilityService } from '../../services/utility.service';
 
 @Component({
   selector: 'app-productdetailpage',
@@ -28,9 +30,11 @@ export class ProductdetailpageComponent {
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private productService: ProductsService,
+    public utilityService: UtilityService
   ) {
-    this.throttledBuy = this.throttle(this.buy.bind(this), 1000);
+    this.throttledBuy = this.utilityService.throttle(this.buy.bind(this), 1000);
     this.activateRoute.params.subscribe((values) => {
       this.productID = values['id'];
       this.section = values['section'];
@@ -41,7 +45,7 @@ export class ProductdetailpageComponent {
     this.store
       .select((state: any) => state.products)
       .subscribe(({ products }) => {
-        this.product = this.getProduct(products);
+        this.product = this.productService.getProduct(products, this.productID);
       });
   }
 
@@ -71,30 +75,5 @@ export class ProductdetailpageComponent {
       );
     }
     this.toast?.show();
-  }
-
-  throttle(func: Function, limit: number) {
-    let inThrottle: boolean;
-    return () => {
-      if (!inThrottle) {
-        func.apply(this);
-        inThrottle = true;
-        setTimeout(() => (inThrottle = false), limit);
-      }
-    };
-  }
-
-  onBuy() {
-    this.throttledBuy();
-  }
-
-  getProduct(products: Product[]): Product {
-    return products.find(
-      (product: Product) => product.id === Number(this.productID)
-    )!;
-  }
-
-  getRange(n: number): number[] {
-    return Array.from({ length: Math.floor(n) }, (_, i) => i);
   }
 }

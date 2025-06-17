@@ -1,4 +1,4 @@
-<div class="container p-5" style="background-color: white">
+<div class="container p-5 mt-5" style="background-color: white">
   <!-- Title -->
   <div class="row mb-4">
     <div class="col">
@@ -47,7 +47,7 @@
         title="Add to cart"
         style="background-color: white; border: none"
         id="buyButton"
-        (click)="onBuy()"
+        (click)="throttledBuy()"
       >
         <fa-icon [icon]="cartIcon" class="fs-3"></fa-icon>
       </button>
@@ -80,9 +80,9 @@
             </p>
             <p class="mb-1">{{ review.comment }}</p>
 
-            @for (i of getRange(review.rating); track i) {
+            @for (i of utilityService.getRange(review.rating); track i) {
             <fa-icon [icon]="star" style="color: gold"></fa-icon>
-            } @for (i of getRange(5 - review.rating); track i) {
+            } @for (i of utilityService.getRange(5 - review.rating); track i) {
             <fa-icon [icon]="star" style="color: lightgrey"></fa-icon>
             }
           </div>

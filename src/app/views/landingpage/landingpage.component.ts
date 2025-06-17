@@ -26,8 +26,8 @@ export class LandingpageComponent implements OnInit {
 
   constructor(
     private store: Store<{ store: {} }>,
-    private product: ProductsService,
-    private data: DataService
+    private productService: ProductsService,
+    private dataService: DataService
   ) {}
 
   ngOnInit() {
@@ -35,13 +35,15 @@ export class LandingpageComponent implements OnInit {
       .select((state: any) => state.products)
       .subscribe(({ products }) => {
         if (products.length) {
-          this.categories = this.data.extractCategories(products);
+          this.categories = this.dataService.extractCategories(products);
         } else {
-          this.product.getProducts().subscribe({
+          this.productService.getProducts().subscribe({
             next: (response: { products: Product[] }) => {
-              this.data.replaceImages(response.products);
+              this.dataService.replaceImages(response.products);
               this.store.dispatch(setProducts({ products: response.products }));
-              this.categories = this.data.extractCategories(response.products);
+              this.categories = this.dataService.extractCategories(
+                response.products
+              );
             },
             error: (err) => console.error('Error fetching products:', err),
           });

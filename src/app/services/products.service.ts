@@ -17,4 +17,10 @@ export class ProductsService {
       `${this.url}?limit=${this.limit}`
     );
   }
+
+  getProduct(products: Product[], productID: number): Product {
+    return products.find(
+      (product: Product) => product.id === Number(productID)
+    )!;
+  }
 }
