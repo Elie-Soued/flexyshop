@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { type Cart } from '../../interface';
 import { Store } from '@ngrx/store';
@@ -13,13 +13,13 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './checkoutpage.component.html',
   styleUrl: './checkoutpage.component.css',
 })
-export class CheckoutpageComponent {
+export class CheckoutpageComponent implements OnInit {
   cart!: Cart[];
 
   home = faHome;
   constructor(private store: Store<AppState>) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.store
       .select((state: AppState) => state.cart)
       .subscribe(({ items }) => {

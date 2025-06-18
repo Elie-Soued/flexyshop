@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCartPlus, faStar, faHome } from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +17,7 @@ import { UtilityService } from '../../services/utility.service';
   templateUrl: './productdetailpage.component.html',
   styleUrl: './productdetailpage.component.css',
 })
-export class ProductdetailpageComponent {
+export class ProductdetailpageComponent implements OnInit {
   productID: number = 0;
   section: string = '';
   product!: any;
@@ -41,7 +41,7 @@ export class ProductdetailpageComponent {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.store
       .select((state: AppState) => state.products)
       .subscribe(({ products }) => {
@@ -49,7 +49,7 @@ export class ProductdetailpageComponent {
       });
   }
 
-  buy() {
+  buy(): void {
     if (this.product.stock > 0) {
       this.store.dispatch(removeFromStock({ id: this.product.id }));
       this.store.dispatch(

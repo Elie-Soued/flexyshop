@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './productspage.component.html',
   styleUrl: './productspage.component.css',
 })
-export class ProductspageComponent {
+export class ProductspageComponent implements OnInit {
   section: string = '';
   products: Product[] = [];
   categoryProducts: Product[] = [];
@@ -28,7 +28,7 @@ export class ProductspageComponent {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.store
       .select((state: AppState) => state.products)
       .subscribe(({ products }) => {

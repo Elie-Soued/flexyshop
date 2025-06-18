@@ -31,7 +31,7 @@ export class LandingpageComponent implements OnInit {
     private dataService: DataService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.store
       .select((state: AppState) => state.products)
       .subscribe(({ products }) => {
