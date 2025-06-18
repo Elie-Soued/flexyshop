@@ -2,7 +2,10 @@
   <!-- Title -->
   <div class="row mb-4">
     <div class="col">
+      @if(product){
       <h2 class="fw-bold">{{ product.title }}</h2>
+
+      }
     </div>
 
     <div
@@ -61,6 +64,7 @@
 
   <!-- Product Info -->
   <div class="row gy-4 align-items-start">
+    @if(product){
     <!-- Text Info -->
     <div class="col-12 col-lg-6">
       <ul class="list-unstyled">
@@ -100,6 +104,7 @@
         style="max-width: 100%; max-height: 400px; object-fit: contain"
       />
     </div>
+    }
   </div>
 
   <a [routerLink]="['/section', section]">

@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCartPlus, faStar, faHome } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import { type Product, type Cart } from '../../interface';
+import { type Cart } from '../../interface';
 import { type AppState } from '../../store/store.reducer';
 import { addToCart, removeFromStock } from '../../store/store.actions';
 import Toast from 'bootstrap/js/dist/toast.js';
@@ -34,7 +34,7 @@ export class ProductdetailpageComponent {
     private productService: ProductsService,
     public utilityService: UtilityService
   ) {
-    this.throttledBuy = this.utilityService.throttle(this.buy.bind(this), 1000);
+    this.throttledBuy = this.utilityService.throttle(() => this.buy(), 1000);
     this.activateRoute.params.subscribe((values) => {
       this.productID = values['id'];
       this.section = values['section'];

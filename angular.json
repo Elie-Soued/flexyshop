@@ -49,6 +49,10 @@
               ],
               "outputHashing": "all"
             },
+
+              "github-actions": {
+              "outputPath": "dist/flexyshop"
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
