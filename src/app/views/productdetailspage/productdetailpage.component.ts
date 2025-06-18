@@ -43,7 +43,7 @@ export class ProductdetailpageComponent {
 
   ngOnInit() {
     this.store
-      .select((state: any) => state.products)
+      .select((state: AppState) => state.products)
       .subscribe(({ products }) => {
         this.product = this.productService.getProduct(products, this.productID);
       });

@@ -30,7 +30,7 @@ export class ProductspageComponent {
 
   ngOnInit() {
     this.store
-      .select((state: any) => state.products)
+      .select((state: AppState) => state.products)
       .subscribe(({ products }) => {
         this.categoryProducts = products.filter(
           (product: Product) => product.category === this.section

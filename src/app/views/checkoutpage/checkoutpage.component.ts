@@ -21,7 +21,7 @@ export class CheckoutpageComponent {
 
   ngOnInit() {
     this.store
-      .select((state: any) => state.cart)
+      .select((state: AppState) => state.cart)
       .subscribe(({ items }) => {
         this.cart = items;
       });

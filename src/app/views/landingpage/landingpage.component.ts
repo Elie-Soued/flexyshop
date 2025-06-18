@@ -11,6 +11,7 @@ import {
   type CategoryWithImage,
   type Cart,
 } from '../../interface';
+import { AppState } from '../../store/store.reducer';
 
 @Component({
   selector: 'app-landingpage',
@@ -25,14 +26,14 @@ export class LandingpageComponent implements OnInit {
   currentYear = new Date().getFullYear();
 
   constructor(
-    private store: Store<{ store: {} }>,
+    private store: Store<AppState>,
     private productService: ProductsService,
     private dataService: DataService
   ) {}
 
   ngOnInit() {
     this.store
-      .select((state: any) => state.products)
+      .select((state: AppState) => state.products)
       .subscribe(({ products }) => {
         if (products.length) {
           this.categories = this.dataService.extractCategories(products);
@@ -51,7 +52,7 @@ export class LandingpageComponent implements OnInit {
       });
 
     this.store
-      .select((state: any) => state.cart)
+      .select((state: AppState) => state.cart)
       .subscribe(({ items }) => {
         this.cart = items;
       });
