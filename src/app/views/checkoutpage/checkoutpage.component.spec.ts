@@ -26,4 +26,7 @@ describe('CheckoutpageComponent', () => {
   it('Make sure the Invoice is correctly calculated', () => {
     // write test
   });
+  it('If no items are present in the cart, display message', () => {
+    // write test
+  });
 });

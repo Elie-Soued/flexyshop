@@ -12,12 +12,13 @@
 
     <h5 class="mb-0 text-muted">Shop smart. Stay flex.</h5>
 
-    <a [routerLink]="['/checkout']" class="ms-auto p-2">
+    <a [routerLink]="['/checkout']" id="checkoutLink" class="ms-auto p-2">
       <button type="button" class="btn" title="Cart">
         <div class="cart-wrapper position-relative">
           <fa-icon [icon]="cartIcon" class="fs-3"></fa-icon>
           @if(cart && cart.length){
           <span
+            id="cartItems"
             class="cart-indicator position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
             >{{ cart.length }}</span
           >
@@ -31,11 +32,12 @@
     class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-4 justify-content-center mt-4"
   >
     @for(category of categories; track category){
-    <div class="col">
+    <div class="col" id="categoriesWrapper">
       <a
         [routerLink]="['/section', category.name]"
         class="text-decoration-none text-dark d-block text-center border rounded shadow-sm p-3 h-100 hover-shadow"
         style="background-color: white"
+        id="{{ category.name }}/sectionLink"
       >
         <img
           [src]="category.thumbnail"
