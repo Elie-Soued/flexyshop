@@ -26,7 +26,13 @@ describe('LandingpageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Make sure the landingPage is correctly rendered', () => {
+    // write test
   });
+
+  it('Make sure categories are extracted from products', () => {});
+  // write test
+
+  it('Make sure cart is correctly fetched from the store', () => {});
+  // write test
 });

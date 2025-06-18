@@ -22,7 +22,11 @@ describe('ProductspageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Make sure the productsPage component is correctly rendered', () => {
+    // write test
+  });
+
+  it('Make sure products by category are fetched ', () => {
+    // write test
   });
 });

@@ -33,7 +33,13 @@ describe('ProductdetailpageComponent', () => {
     httpClient = TestBed.inject(HttpTestingController);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Make sure productDetailPage is correctly rendered', () => {
+    // write test
+  });
+  it('Make sure the buy function is adding items to the cart', () => {
+    // write test
+  });
+  it('Make sure the buy function displays the correct toast depending on the amount of items remaining in the stock', () => {
+    // write test
   });
 });

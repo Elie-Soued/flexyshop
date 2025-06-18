@@ -19,7 +19,11 @@ describe('CheckoutpageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Make sure the checkoutPage is correctly rendered', () => {
+    // write test
+  });
+
+  it('Make sure the Invoice is correctly calculated', () => {
+    // write test
   });
 });
