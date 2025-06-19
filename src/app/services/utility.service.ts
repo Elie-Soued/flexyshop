@@ -18,6 +18,6 @@ export class UtilityService {
   }
 
   getRange(n: number): number[] {
-    return Array.from({ length: Math.floor(n) }, (_, i) => i);
+    return Array.from({ length: Math.floor(n) });
   }
 }
