@@ -4,11 +4,18 @@
     class="d-flex justify-content-between align-items-center py-4 border-bottom"
   >
     <h1 class="mb-0 fw-bold">Your Invoice</h1>
-    <a [routerLink]="['/']">
-      <button type="button" class="btn" title="Home">
-        <fa-icon [icon]="home" class="fs-3"></fa-icon>
-      </button>
-    </a>
+    <div>
+      <a [routerLink]="['/']">
+        <button type="button" class="btn" title="Checkout">
+          <fa-icon [icon]="creditCard" class="fs-3"></fa-icon>
+        </button>
+      </a>
+      <a [routerLink]="['/']">
+        <button type="button" class="btn" title="Home">
+          <fa-icon [icon]="home" class="fs-3"></fa-icon>
+        </button>
+      </a>
+    </div>
   </div>
 
   <!-- If cart has items -->
@@ -49,7 +56,7 @@
   <!-- Grand total -->
   <div class="text-end mt-3">
     <h4 class="fw-bold">
-      Grand Total:
+      Total:
       <span>{{ utilsService.getgrandTotal(cart) | currency : "EUR" }}</span>
     </h4>
   </div>
