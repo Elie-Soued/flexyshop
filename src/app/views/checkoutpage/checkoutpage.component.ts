@@ -6,6 +6,7 @@ import { type AppState } from '../../store/store.reducer';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-checkoutpage',
@@ -17,7 +18,10 @@ export class CheckoutpageComponent implements OnInit {
   cart!: Cart[];
 
   home = faHome;
-  constructor(private store: Store<AppState>) {}
+  constructor(
+    private store: Store<AppState>,
+    public utilsService: UtilsService
+  ) {}
 
   ngOnInit(): void {
     this.store
@@ -25,9 +29,5 @@ export class CheckoutpageComponent implements OnInit {
       .subscribe(({ items }) => {
         this.cart = items;
       });
-  }
-
-  get grandTotal(): number {
-    return this.cart.reduce((sum, item) => sum + item.price * item.buyCount, 0);
   }
 }

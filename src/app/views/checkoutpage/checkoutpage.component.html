@@ -50,7 +50,7 @@
   <div class="text-end mt-3">
     <h4 class="fw-bold">
       Grand Total:
-      <span>{{ grandTotal | currency : "EUR" }}</span>
+      <span>{{ utilsService.getgrandTotal(cart) | currency : "EUR" }}</span>
     </h4>
   </div>
   }
