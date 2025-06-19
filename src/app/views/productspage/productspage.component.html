@@ -21,7 +21,7 @@
   </div>
 
   @if(categoryProducts.length){
-  <div class="vstack gap-4">
+  <div class="vstack gap-4" id="categorySection">
     @for(product of categoryProducts; track product){
     <div
       class="row align-items-center border rounded shadow-sm p-3 mx-1 mx-md-0"
@@ -64,6 +64,8 @@
     }
   </div>
   } @else {
-  <p class="text-muted text-center">Sorry... we are currently out of stock</p>
+  <p id="errorMessage" class="text-muted text-center">
+    Sorry... we are currently out of stock
+  </p>
   }
 </div>
