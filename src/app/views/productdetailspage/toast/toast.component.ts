@@ -10,31 +10,22 @@ import { ToastService } from '../../../services/toast.service';
 })
 export class ToastComponent {
   toast!: Toast;
-  toastStatus = {
-    status: '',
-    timestamp: 0,
-  };
-  private injector = inject(Injector);
+  toastStatus = '';
 
   constructor(private toastService: ToastService) {}
 
-  ngAfterViewInit() {
-    effect(
-      () => {
-        this.toastStatus = this.toastService.toastStatus();
+  ngOnInit() {
+    this.toastService.toast$.subscribe((value) => {
+      this.toastStatus = value;
 
-        if (this.toastStatus.status) {
-          this.toast = Toast.getOrCreateInstance(
-            document.getElementById('toast')!,
-            {
-              delay: 500,
-            }
-          );
-
-          this.toast?.show();
+      this.toast = Toast.getOrCreateInstance(
+        document.getElementById('toast')!,
+        {
+          delay: 500,
         }
-      },
-      { injector: this.injector }
-    );
+      );
+
+      this.toast?.show();
+    });
   }
 }

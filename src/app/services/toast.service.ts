@@ -1,24 +1,20 @@
 import { Injectable, signal } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToastService {
-  toastStatus = signal({
-    status: '',
-    timestamp: 0,
-  });
+  private toastStatus = new Subject<string>();
+  public toast$ = this.toastStatus.asObservable();
 
   constructor() {}
 
   updateToastStatus(status: string): void {
-    this.toastStatus.set({ status, timestamp: Date.now() });
+    this.toastStatus.next(status);
   }
 
   clearToastStatus() {
-    this.toastStatus.set({
-      status: '',
-      timestamp: 0,
-    });
+    this.toastStatus.next('');
   }
 }
