@@ -19,7 +19,7 @@ export class UtilsService {
   }
 
   getRange(n: number): number[] {
-    return Array.from({ length: Math.floor(n) });
+    return Array.from({ length: Math.floor(n) }, (v, i) => i);
   }
 
   getgrandTotal(cart: Cart[]): number {

@@ -7,13 +7,20 @@ import { Store } from '@ngrx/store';
 import { type Cart } from '../../interface';
 import { type AppState } from '../../store/store.reducer';
 import { addToCart, removeFromStock } from '../../store/store.actions';
-import Toast from 'bootstrap/js/dist/toast.js';
 import { ProductsService } from '../../services/products.service';
 import { UtilsService } from '../../services/utils.service';
+import { ToastService } from '../../services/toast.service';
+import { ToastComponent } from './toast/toast.component';
 
 @Component({
   selector: 'app-productdetailpage',
-  imports: [CurrencyPipe, DatePipe, FontAwesomeModule, RouterModule],
+  imports: [
+    CurrencyPipe,
+    DatePipe,
+    FontAwesomeModule,
+    RouterModule,
+    ToastComponent,
+  ],
   templateUrl: './productdetailpage.component.html',
   styleUrl: './productdetailpage.component.css',
 })
@@ -23,7 +30,6 @@ export class ProductdetailpageComponent implements OnInit {
   product!: any;
   cart!: Cart[];
   cartIcon = faCartPlus;
-  toast!: Toast;
   star = faStar;
   home = faHome;
   throttledBuy: () => void;
@@ -32,6 +38,7 @@ export class ProductdetailpageComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private store: Store<AppState>,
     private productService: ProductsService,
+    private toastService: ToastService,
     public utilsService: UtilsService
   ) {
     this.throttledBuy = this.utilsService.throttle(() => this.buy(), 1000);
@@ -42,6 +49,8 @@ export class ProductdetailpageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.toastService.clearToastStatus();
+
     this.store
       .select((state: AppState) => state.products)
       .subscribe(({ products }) => {
@@ -60,20 +69,9 @@ export class ProductdetailpageComponent implements OnInit {
           image: this.product.thumbnail,
         })
       );
-      this.toast = Toast.getOrCreateInstance(
-        document.getElementById('toastSuccess')!,
-        {
-          delay: 500,
-        }
-      );
+      this.toastService.updateToastStatus('success');
     } else {
-      this.toast = Toast.getOrCreateInstance(
-        document.getElementById('toastError')!,
-        {
-          delay: 500,
-        }
-      );
+      this.toastService.updateToastStatus('error');
     }
-    this.toast?.show();
   }
 }
