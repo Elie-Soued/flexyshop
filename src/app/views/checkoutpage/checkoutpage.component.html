@@ -13,7 +13,7 @@
 
   <!-- If cart has items -->
   @if(cart.length){
-  <div class="table-responsive mt-4">
+  <div class="table-responsive mt-4" id="invoiceTable">
     <table class="table table-bordered align-middle text-center">
       <thead class="table-light">
         <tr>
@@ -57,7 +57,7 @@
 
   <!-- If cart is empty -->
   @else {
-  <div class="text-center mt-5">
+  <div class="text-center mt-5" id="emptyCart">
     <p class="text-muted fs-5">
       Your cart is empty :) Go do some shopping and come back!
     </p>
