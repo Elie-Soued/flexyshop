@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UtilityService } from './utility.service';
+import { UtilsService } from './utils.service';
 
-describe('UtilityService', () => {
-  let service: UtilityService;
+describe('UtilsService', () => {
+  let service: UtilsService;
 
   beforeEach(() => {
     jasmine.clock().install();
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UtilityService);
+    service = TestBed.inject(UtilsService);
   });
 
   afterEach(() => {

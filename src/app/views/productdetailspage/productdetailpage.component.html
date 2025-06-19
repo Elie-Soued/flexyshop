@@ -84,9 +84,9 @@
             </p>
             <p class="mb-1">{{ review.comment }}</p>
 
-            @for (i of utilityService.getRange(review.rating); track i) {
+            @for (i of utilsService.getRange(review.rating); track i) {
             <fa-icon [icon]="star" style="color: gold"></fa-icon>
-            } @for (i of utilityService.getRange(5 - review.rating); track i) {
+            } @for (i of utilsService.getRange(5 - review.rating); track i) {
             <fa-icon [icon]="star" style="color: lightgrey"></fa-icon>
             }
           </div>

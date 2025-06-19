@@ -9,7 +9,7 @@ import { type AppState } from '../../store/store.reducer';
 import { addToCart, removeFromStock } from '../../store/store.actions';
 import Toast from 'bootstrap/js/dist/toast.js';
 import { ProductsService } from '../../services/products.service';
-import { UtilityService } from '../../services/utility.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-productdetailpage',
@@ -32,9 +32,9 @@ export class ProductdetailpageComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private store: Store<AppState>,
     private productService: ProductsService,
-    public utilityService: UtilityService
+    public utilsService: UtilsService
   ) {
-    this.throttledBuy = this.utilityService.throttle(() => this.buy(), 1000);
+    this.throttledBuy = this.utilsService.throttle(() => this.buy(), 1000);
     this.activateRoute.params.subscribe((values) => {
       this.productID = values['id'];
       this.section = values['section'];
