@@ -52,7 +52,7 @@ describe('LandingpageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('categoriesWrapper is not rendered', () => {
+  it('If no products are available, categoriesWrapper is not rendered', () => {
     //Arrange
     productService.getProducts.and.returnValue(of({ products: [] }));
     const categoryWrapperBefore = fixture.debugElement.query(
@@ -65,7 +65,7 @@ describe('LandingpageComponent', () => {
     expect(checkoutLink).toBeTruthy();
   });
 
-  it('categoriesWrapper is rendered', fakeAsync(() => {
+  it('If products are available, categories Wrapper is rendered', fakeAsync(() => {
     //Arrange
     productService.getProducts.and.returnValue(of(productsMock));
     dataService.replaceImages.and.callFake(() => {});
@@ -89,7 +89,7 @@ describe('LandingpageComponent', () => {
     );
   }));
 
-  it('If products are in the store, the categories are directly abstracted', fakeAsync(() => {
+  it('If products are in the store, the categories are directly created and displayed', fakeAsync(() => {
     //Arrange
     dataService.extractCategories.and.returnValue(categoriesExtracted);
 
@@ -125,7 +125,7 @@ describe('LandingpageComponent', () => {
     expect(component.categories).toEqual(categoriesExtracted);
   }));
 
-  it('Make sure the correct the cart icon is correctly updated depending on the number of items in the cart', () => {
+  it('Make sure the cart icon is updated depending on the number of items in the cart', () => {
     component.cart = [
       {
         id: 6,

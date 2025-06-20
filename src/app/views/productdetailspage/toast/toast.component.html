@@ -11,10 +11,11 @@
 >
   <div
     class="d-flex"
+    id="toastBodyContainer"
     [class.d-block]="toastStatus"
     [class.d-none]="!toastStatus"
   >
-    <div class="toast-body">
+    <div class="toast-body" id="toastBody">
       {{
         toastStatus === "success"
           ? "This item was added to your cart."

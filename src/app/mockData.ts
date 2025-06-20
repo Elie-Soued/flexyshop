@@ -49,7 +49,7 @@ const productsMock2 = {
       price: 9.99,
       discountPercentage: 10.48,
       rating: 2.56,
-      stock: 99,
+      stock: 0,
       tags: ['beauty', 'mascara'],
       brand: 'Essence',
       sku: 'BEA-ESS-ESS-001',

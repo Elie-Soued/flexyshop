@@ -10,7 +10,21 @@ describe('ToastService', () => {
     service = TestBed.inject(ToastService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('Making sure updateStatus dispatches the correct value', (done) => {
+    service.toast$.subscribe((value) => {
+      expect(value).toEqual('pilex');
+      done();
+    });
+
+    service.updateToastStatus('pilex');
+  });
+
+  it('Making sure clearStatus sends an empty string', (done) => {
+    service.toast$.subscribe((value) => {
+      expect(value).toEqual('');
+      done();
+    });
+
+    service.clearToastStatus();
   });
 });

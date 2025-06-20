@@ -21,7 +21,7 @@
         <fa-icon [icon]="cartIcon" class="fs-3"></fa-icon>
       </button>
       <a [routerLink]="['/']">
-        <button type="button" class="btn" title="Home">
+        <button type="button" class="btn" title="Home" id="goHome">
           <fa-icon [icon]="home" class="fs-3"></fa-icon>
         </button>
       </a>
@@ -74,6 +74,6 @@
   </div>
 
   <a [routerLink]="['/section', section]">
-    <button class="btn btn-secondary" title="Go back">Back</button>
+    <button class="btn btn-secondary" title="Go back" id="goBack">Back</button>
   </a>
 </div>

@@ -32,7 +32,7 @@ describe('UtilsService', () => {
     jasmine.clock().uninstall();
   });
 
-  it('Making sure throttle is working correctly', () => {
+  it('Making sure throttle executes the function on the correct interval', () => {
     const spy = jasmine.createSpy('throttleFn');
     const throttled = service.throttle(spy, 1000);
 
@@ -51,7 +51,7 @@ describe('UtilsService', () => {
     expect(spy.calls.count()).toBe(3);
   });
 
-  it('Make sure getRange is working correctly', () => {
+  it('Make sure getRange creates an array with a specific length', () => {
     const range = service.getRange(3);
     expect(range.length).toEqual(3);
   });

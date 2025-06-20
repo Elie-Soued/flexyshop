@@ -12,7 +12,7 @@ describe('DataService', () => {
     service = TestBed.inject(DataService);
   });
 
-  it('make sure replaceImages is working correctly ', () => {
+  it('make sure replaceImages replaces the thumbnail ', () => {
     // Prepare
     const products = [
       {
@@ -31,7 +31,7 @@ describe('DataService', () => {
     );
   });
 
-  it('make sure extractCategories is working correctly ', () => {
+  it('make sure extractCategories extract the differents categories of all the products and assign a thumbnail to each category  ', () => {
     // Prepare
     const categories = service.extractCategories(productsMock.products);
 
