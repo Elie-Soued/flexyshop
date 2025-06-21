@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHome, faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { UtilsService } from '../../services/utils.service';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-checkoutpage',
@@ -16,12 +17,12 @@ import { UtilsService } from '../../services/utils.service';
 })
 export class CheckoutpageComponent implements OnInit {
   cart!: Cart[];
-
   home = faHome;
   creditCard = faCreditCard;
 
   constructor(
     private store: Store<AppState>,
+    private productService: ProductsService,
     public utilsService: UtilsService
   ) {}
 
@@ -31,5 +32,10 @@ export class CheckoutpageComponent implements OnInit {
       .subscribe(({ items }) => {
         this.cart = items;
       });
+  }
+
+  checkout() {
+    const totalAmount = this.utilsService.getgrandTotal(this.cart);
+    this.productService.checkout(totalAmount);
   }
 }

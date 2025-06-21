@@ -5,6 +5,7 @@ import { provideRouter } from '@angular/router';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { cart } from '../../mockData';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 
 describe('CheckoutpageComponent', () => {
   let component: CheckoutpageComponent;
@@ -16,7 +17,11 @@ describe('CheckoutpageComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [CheckoutpageComponent],
-      providers: [provideRouter([]), { provide: Store, useValue: store }],
+      providers: [
+        provideRouter([]),
+        provideHttpClient(),
+        { provide: Store, useValue: store },
+      ],
     }).compileComponents();
   });
 
