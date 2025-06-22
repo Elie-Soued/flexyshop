@@ -5,14 +5,22 @@
   >
     <h1 class="mb-0 fw-bold">Your Invoice</h1>
     <div>
-      <button type="button" class="btn" title="Checkout" (click)="checkout()">
-        <fa-icon [icon]="creditCard" class="fs-3"></fa-icon>
-      </button>
       <a [routerLink]="['/']">
         <button type="button" class="btn" title="Home">
           <fa-icon [icon]="home" class="fs-3"></fa-icon>
         </button>
       </a>
+      <button
+        type="button"
+        class="btn"
+        title="Clear Cart"
+        (click)="clearCart()"
+      >
+        <fa-icon [icon]="trash" class="fs-3"></fa-icon>
+      </button>
+      <button type="button" class="btn" title="Checkout" (click)="checkout()">
+        <fa-icon [icon]="creditCard" class="fs-3"></fa-icon>
+      </button>
     </div>
   </div>
 

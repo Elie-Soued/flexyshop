@@ -16,7 +16,4 @@ export const addToCart = createAction(
   props<{ id: number; price: number; title: string; image: string }>()
 );
 
-export const setCart = createAction(
-  '[cart] setCart',
-  props<{ items: Cart[] }>()
-);
+export const clearCart = createAction('[cart] clearCart');

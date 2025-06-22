@@ -5,9 +5,14 @@ import { Store } from '@ngrx/store';
 import { type AppState } from '../../store/store.reducer';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faHome, faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHome,
+  faCreditCard,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import { UtilsService } from '../../services/utils.service';
 import { ProductsService } from '../../services/products.service';
+import { clearCart } from '../../store/store.actions';
 
 @Component({
   selector: 'app-checkoutpage',
@@ -19,6 +24,7 @@ export class CheckoutpageComponent implements OnInit {
   cart!: Cart[];
   home = faHome;
   creditCard = faCreditCard;
+  trash = faTrash;
 
   constructor(
     private store: Store<AppState>,
@@ -37,5 +43,9 @@ export class CheckoutpageComponent implements OnInit {
   checkout() {
     const totalAmount = this.utilsService.getgrandTotal(this.cart);
     this.productService.checkout(totalAmount);
+  }
+
+  clearCart() {
+    this.store.dispatch(clearCart());
   }
 }

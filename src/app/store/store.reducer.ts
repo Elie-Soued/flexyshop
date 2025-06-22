@@ -1,9 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import {
   setProducts,
-  setCart,
   addToCart,
   removeFromStock,
+  clearCart,
 } from './store.actions';
 import { type Product, type Cart } from '../interface';
 
@@ -38,8 +38,6 @@ export const productsReducer = createReducer(
 export const cartReducer = createReducer(
   cartInitialState,
 
-  on(setCart, (state, { items }) => ({ ...state, items })),
-
   on(addToCart, (state: any, { id, price, title, image }) => {
     const existingItem = state.items.find((item: any) => item.id === id);
 
@@ -63,5 +61,7 @@ export const cartReducer = createReducer(
         items: [...state.items, { id: id, buyCount: 1, price, title, image }],
       };
     }
-  })
+  }),
+
+  on(clearCart, () => cartInitialState)
 );
