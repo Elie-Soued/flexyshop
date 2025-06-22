@@ -14,11 +14,20 @@
         type="button"
         class="btn"
         title="Clear Cart"
+        [disabled]="!totalAmount"
+        style="border: none"
         (click)="clearCart()"
       >
         <fa-icon [icon]="trash" class="fs-3"></fa-icon>
       </button>
-      <button type="button" class="btn" title="Checkout" (click)="checkout()">
+      <button
+        type="button"
+        class="btn"
+        title="Checkout"
+        [disabled]="!totalAmount"
+        style="border: none"
+        (click)="checkout()"
+      >
         <fa-icon [icon]="creditCard" class="fs-3"></fa-icon>
       </button>
     </div>

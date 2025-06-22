@@ -25,6 +25,7 @@ export class CheckoutpageComponent implements OnInit {
   home = faHome;
   creditCard = faCreditCard;
   trash = faTrash;
+  totalAmount = 0;
 
   constructor(
     private store: Store<AppState>,
@@ -37,12 +38,12 @@ export class CheckoutpageComponent implements OnInit {
       .select((state: AppState) => state.cart)
       .subscribe(({ items }) => {
         this.cart = items;
+        this.totalAmount = this.utilsService.getgrandTotal(this.cart);
       });
   }
 
   checkout() {
-    const totalAmount = this.utilsService.getgrandTotal(this.cart);
-    this.productService.checkout(totalAmount);
+    this.productService.checkout(this.totalAmount);
   }
 
   clearCart() {
