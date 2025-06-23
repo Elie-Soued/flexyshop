@@ -15,6 +15,7 @@ import { clearCart } from '../../store/store.actions';
 export class SuccesspageComponent implements OnInit {
   home = faHome;
   checkCircle = faCheckCircle;
+  emoji = '🎉';
 
   constructor(private store: Store<AppState>) {}
 
