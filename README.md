@@ -1,59 +1,52 @@
-# Flexyshop
+### Overview
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+Flexyshop is an e-commerce application built to practice Angular and NgRx.
 
-## Development server
 
-To start a local development server, run:
+#### Run the application
+
+To clone and run the frontend:
 
 ```bash
+git clone https://github.com/Elie-Soued/flexyshop.git
+cd flexyshop
 ng serve
+
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open your browser at http://localhost:4200/ to see the app.  
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+#### Topics covered in this project and main highlights
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+##### NgRx
+As mentioned, this project is centered around NgRx.
+- Product data was fetched from dummyjson.com and stored in-memory using the NgRx store.
+- The store manages both product inventory and the user's shopping cart.
+- The store was synchronized with localStorage using ngrx-store-localstorage to persist state across sessions.
 
-```bash
-ng generate --help
-```
 
-## Building
+##### CI / CD
+This is the first project where I implemented Continuous Integration and Continuous Deployment.
+Thanks to GitHub Actions, the workflow is automated as follows when a commit is pushed to the master branch:
 
-To build the project run:
+1. Tests are executed
+2. The application is built
+3. A script on the remote server is triggered, which:
+- Pulls the latest code
+- Builds the application
+- Restarts the web server
 
-```bash
-ng build
-```
+It feels quite magical to see this all happen seamlessly.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
-```bash
-ng test
-```
 
-## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
 
-```bash
-ng e2e
-```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
