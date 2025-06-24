@@ -5,11 +5,7 @@ import { Store } from '@ngrx/store';
 import { type AppState } from '../../store/store.reducer';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {
-  faHome,
-  faCreditCard,
-  faTrash,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCreditCard, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { UtilsService } from '../../services/utils.service';
 import { ProductsService } from '../../services/products.service';
 import { clearCart } from '../../store/store.actions';
@@ -22,7 +18,6 @@ import { clearCart } from '../../store/store.actions';
 })
 export class CheckoutpageComponent implements OnInit {
   cart!: Cart[];
-  home = faHome;
   creditCard = faCreditCard;
   trash = faTrash;
   totalAmount = 0;

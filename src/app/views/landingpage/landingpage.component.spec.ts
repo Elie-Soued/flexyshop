@@ -58,11 +58,9 @@ describe('LandingpageComponent', () => {
     const categoryWrapperBefore = fixture.debugElement.query(
       By.css('#categoriesWrapper')
     );
-    const checkoutLink = fixture.debugElement.query(By.css('#checkoutLink'));
 
     //Expect
     expect(categoryWrapperBefore).toBeFalsy();
-    expect(checkoutLink).toBeTruthy();
   });
 
   it('If products are available, categories Wrapper is rendered', fakeAsync(() => {
@@ -80,13 +78,8 @@ describe('LandingpageComponent', () => {
     const categoryWrapperAfter = fixture.debugElement.query(
       By.css('#categoriesWrapper')
     );
-    const checkoutLink = fixture.debugElement.query(By.css('#checkoutLink'));
+
     expect(categoryWrapperAfter).toBeTruthy();
-    expect(checkoutLink).toBeTruthy();
-    expect(
-      fixture.debugElement.query(By.css('[id="beauty/sectionLink"]'))
-        .nativeElement
-    );
   }));
 
   it('If products are in the store, the categories are directly created and displayed', fakeAsync(() => {
@@ -124,31 +117,4 @@ describe('LandingpageComponent', () => {
     );
     expect(component.categories).toEqual(categoriesExtracted);
   }));
-
-  it('Make sure the cart icon is updated depending on the number of items in the cart', () => {
-    component.cart = [
-      {
-        id: 6,
-        buyCount: 1,
-        price: 49.99,
-        title: 'Calvin Klein CK One',
-        image: 'https://flexyshopimages.pilexlaflex.com/images/6.webp',
-      },
-      {
-        id: 5,
-        buyCount: 1,
-        price: 99.99,
-        title: 'ouf item',
-        image: 'https://flexyshopimages.pilexlaflex.com/images/5.webp',
-      },
-    ];
-
-    fixture.detectChanges();
-
-    const cartItems = fixture.debugElement.query(By.css('#cartItems'));
-
-    expect(cartItems).toBeTruthy();
-    const text = cartItems.nativeElement.textContent.trim();
-    expect(text).toBe('2'); // Replace '2' with whatever you expect to be shown
-  });
 });

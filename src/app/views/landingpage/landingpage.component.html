@@ -1,33 +1,4 @@
 <div class="container py-5">
-  <nav
-    class="d-flex align-items-center gap-3 py-3 border rounded shadow-sm bg-white"
-    aria-label="Main navigation"
-  >
-    <img
-      src="/flexyshop.png"
-      alt="Flexyshop Logo"
-      class="img-fluid"
-      style="max-width: 180px; height: auto"
-    />
-
-    <h5 class="mb-0 text-muted">Shop smart. Stay flex.</h5>
-
-    <a [routerLink]="['/checkout']" id="checkoutLink" class="ms-auto p-2">
-      <button type="button" class="btn" title="Cart">
-        <div class="cart-wrapper position-relative">
-          <fa-icon [icon]="cartIcon" class="fs-3"></fa-icon>
-          @if(cart && cart.length){
-          <span
-            id="cartItems"
-            class="cart-indicator position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-            >{{ cart.length }}</span
-          >
-          }
-        </div>
-      </button>
-    </a>
-  </nav>
-
   <div
     class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-4 justify-content-center mt-4"
   >
@@ -50,13 +21,4 @@
     </div>
     }
   </div>
-
-  <footer
-    class="mt-5 py-4 border-top text-center text-muted small bg-dark rounded shadow-sm"
-  >
-    <p class="mb-1" style="color: white">
-      © {{ currentYear }} Flexyshop. All rights reserved.
-    </p>
-    <p class="mb-0" style="color: white">A Pilex la Flex Project</p>
-  </footer>
 </div>
