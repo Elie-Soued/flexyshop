@@ -22,27 +22,46 @@
       <thead class="table-light">
         <tr>
           <th scope="col">Product</th>
-          <th scope="col">Title</th>
           <th scope="col">Quantity</th>
-          <th scope="col">Unit Price</th>
           <th scope="col">Total</th>
+          <th scope="col">Control</th>
         </tr>
       </thead>
       <tbody>
         @for(item of cart; track item){
         <tr>
           <td>
-            <img
-              [src]="item.image"
-              alt="{{ item.title }}"
-              style="max-height: 80px"
-            />
+            <div>
+              <img
+                [src]="item.image"
+                alt="{{ item.title }}"
+                style="max-height: 80px"
+              />
+              <p>{{ item.title }}</p>
+              <p class="fw-semibold">{{ item.price | currency : "EUR" }}</p>
+            </div>
           </td>
-          <td class="fw-semibold">{{ item.title }}</td>
+
           <td>{{ item.buyCount }}</td>
-          <td>{{ item.price | currency : "EUR" }}</td>
           <td class="fw-bold">
             {{ item.price * item.buyCount | currency : "EUR" }}
+          </td>
+          <td>
+            <div class="d-flex flex-column flex-lg-row justify-content-around">
+              <button type="button" class="btn" (click)="addItem(item)">
+                <fa-icon [icon]="add" class="fs-4"></fa-icon>
+              </button>
+              <button
+                type="button"
+                class="btn"
+                (click)="reduceItemBuyCount(item.id)"
+              >
+                <fa-icon [icon]="minus" class="fs-4"></fa-icon>
+              </button>
+              <button type="button" class="btn" (click)="removeItem(item.id)">
+                <fa-icon [icon]="trash" class="fs-4"></fa-icon>
+              </button>
+            </div>
           </td>
         </tr>
         }

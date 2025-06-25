@@ -16,4 +16,14 @@ export const addToCart = createAction(
   props<{ id: number; price: number; title: string; image: string }>()
 );
 
+export const reduceBuyCount = createAction(
+  '[cart] reduceBuyCount',
+  props<{ id: number }>()
+);
+
+export const deleteItem = createAction(
+  '[cart] deleteItem',
+  props<{ id: number }>()
+);
+
 export const clearCart = createAction('[cart] clearCart');

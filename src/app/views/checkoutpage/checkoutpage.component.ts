@@ -5,9 +5,19 @@ import { Store } from '@ngrx/store';
 import { type AppState } from '../../store/store.reducer';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faClose } from '@fortawesome/free-solid-svg-icons';
+import {
+  faClose,
+  faTrash,
+  faAdd,
+  faMinus,
+} from '@fortawesome/free-solid-svg-icons';
 import { UtilsService } from '../../services/utils.service';
 import { ProductsService } from '../../services/products.service';
+import {
+  addToCart,
+  reduceBuyCount,
+  deleteItem,
+} from '../../store/store.actions';
 
 @Component({
   selector: 'app-checkoutpage',
@@ -18,6 +28,9 @@ import { ProductsService } from '../../services/products.service';
 export class CheckoutpageComponent implements OnInit {
   cart!: Cart[];
   close = faClose;
+  trash = faTrash;
+  add = faAdd;
+  minus = faMinus;
   totalAmount = 0;
 
   constructor(
@@ -41,5 +54,24 @@ export class CheckoutpageComponent implements OnInit {
 
   closeCheckoutView() {
     this.utilsService.closeSideNavView();
+  }
+
+  addItem(item: any) {
+    this.store.dispatch(
+      addToCart({
+        id: item.id,
+        price: item.price,
+        title: item.title,
+        image: item.thumbnail,
+      })
+    );
+  }
+
+  reduceItemBuyCount(id: number) {
+    this.store.dispatch(reduceBuyCount({ id }));
+  }
+
+  removeItem(id: number) {
+    this.store.dispatch(deleteItem({ id }));
   }
 }

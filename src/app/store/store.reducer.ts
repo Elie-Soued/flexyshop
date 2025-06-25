@@ -4,6 +4,8 @@ import {
   addToCart,
   removeFromStock,
   clearCart,
+  reduceBuyCount,
+  deleteItem,
 } from './store.actions';
 import { type Product, type Cart } from '../interface';
 
@@ -63,5 +65,19 @@ export const cartReducer = createReducer(
     }
   }),
 
-  on(clearCart, () => cartInitialState)
+  on(clearCart, () => cartInitialState),
+  on(reduceBuyCount, (state, { id }) => {
+    return {
+      items: state.items.map((item) =>
+        item.id === id && item.buyCount > 1
+          ? { ...item, buyCount: item.buyCount - 1 }
+          : item
+      ),
+    };
+  }),
+  on(deleteItem, (state, { id }) => {
+    return {
+      items: state.items.filter((item) => item.id !== id),
+    };
+  })
 );
