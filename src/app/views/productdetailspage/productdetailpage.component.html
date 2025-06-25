@@ -10,11 +10,12 @@
           <fa-icon [icon]="back" class="fs-3"></fa-icon>
         </button>
       </a>
-
+      @if(product){
       <h2 class="fw-bold m-0">
         {{ product.title }}
       </h2>
 
+      }
       <button
         class="btn m-2"
         title="Add to cart"
