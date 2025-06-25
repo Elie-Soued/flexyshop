@@ -2,7 +2,11 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCartPlus, faStar } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCartPlus,
+  faStar,
+  faArrowLeft,
+} from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { type Cart } from '../../interface';
 import { type AppState } from '../../store/store.reducer';
@@ -31,6 +35,7 @@ export class ProductdetailpageComponent implements OnInit {
   cart!: Cart[];
   cartIcon = faCartPlus;
   star = faStar;
+  back = faArrowLeft;
   throttledBuy: () => void;
 
   constructor(

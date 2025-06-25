@@ -4,30 +4,25 @@
 >
   <!-- Title -->
   <div class="row mb-4">
-    <div class="col">
-      @if(product){
-      <h2 class="fw-bold">{{ product.title }}</h2>
+    <div class="d-flex flex-column flex-md-row align-items-center">
+      <a [routerLink]="['/section', section]">
+        <button class="btn m-2" title="Go back" id="goBack">
+          <fa-icon [icon]="back" class="fs-3"></fa-icon>
+        </button>
+      </a>
 
-      }
-    </div>
+      <h2 class="fw-bold m-0">
+        {{ product.title }}
+      </h2>
 
-    <app-toast></app-toast>
-
-    <div class="col-auto text-end">
       <button
-        class="btn btn-secondary m-2"
+        class="btn m-2"
         title="Add to cart"
         id="buyButton"
         (click)="throttledBuy()"
       >
-        Add to cart
+        <fa-icon [icon]="cartIcon" class="fs-3"></fa-icon>
       </button>
-
-      <a [routerLink]="['/section', section]">
-        <button class="btn btn-secondary m-2" title="Go back" id="goBack">
-          Back to {{ section }}
-        </button>
-      </a>
     </div>
   </div>
 
