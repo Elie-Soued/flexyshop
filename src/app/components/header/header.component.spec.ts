@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { HeaderComponent } from './header.component';
-import { productsMock } from '../../mockData';
+import { productsMock, cart } from '../../mockData';
 import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -18,6 +19,7 @@ describe('HeaderComponent', () => {
 
     await TestBed.configureTestingModule({
       providers: [
+        provideHttpClient(),
         { provide: Store, useValue: store },
         { provide: ActivatedRoute, useValue: route },
       ],
@@ -27,6 +29,7 @@ describe('HeaderComponent', () => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     store.select.and.returnValue(of(productsMock));
+    store.select.and.returnValue(of({ items: cart }));
     fixture.detectChanges();
   });
 

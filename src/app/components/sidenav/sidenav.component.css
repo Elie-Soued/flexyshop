@@ -1,0 +1,4 @@
+.custom-sidenav {
+  width: 800px !important;
+  max-width: 90vw; /* Optional: Prevent it from overflowing on small screens */
+}

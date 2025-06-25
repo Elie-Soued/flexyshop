@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { productsMock } from './mockData';
 import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('AppComponent', () => {
   let store: jasmine.SpyObj<Store>;
@@ -16,6 +17,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
       providers: [
+        provideHttpClient(),
         { provide: Store, useValue: store },
         { provide: ActivatedRoute, useValue: route },
       ],

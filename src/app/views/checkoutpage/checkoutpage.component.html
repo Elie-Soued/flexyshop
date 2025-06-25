@@ -1,34 +1,21 @@
 <div class="container py-5" style="min-height: 62vh">
-  <!-- Header -->
   <div
     class="d-flex justify-content-between align-items-center py-4 border-bottom"
   >
-    <h1 class="mb-0 fw-bold">Invoice</h1>
+    <h3 class="mb-0 fw-bold">Shopping Basket</h3>
     <div>
       <button
         type="button"
         class="btn"
-        title="Clear Cart"
-        [disabled]="!totalAmount"
-        style="border: none"
-        (click)="clearCart()"
-      >
-        <fa-icon [icon]="trash" class="fs-3"></fa-icon>
-      </button>
-      <button
-        type="button"
-        class="btn"
         title="Checkout"
-        [disabled]="!totalAmount"
         style="border: none"
-        (click)="checkout()"
+        (click)="closeCheckoutView()"
       >
-        <fa-icon [icon]="creditCard" class="fs-3"></fa-icon>
+        <fa-icon [icon]="close" class="fs-3"></fa-icon>
       </button>
     </div>
   </div>
 
-  <!-- If cart has items -->
   @if(cart.length){
   <div class="table-responsive mt-4" id="invoiceTable">
     <table class="table table-bordered align-middle text-center">
@@ -70,6 +57,15 @@
       <span>{{ utilsService.getgrandTotal(cart) | currency : "EUR" }}</span>
     </h4>
   </div>
+
+  <button
+    class="btn btn-secondary"
+    title="checkout"
+    id="checkout"
+    (click)="checkout()"
+  >
+    Proceed to checkout
+  </button>
   }
 
   <!-- If cart is empty -->

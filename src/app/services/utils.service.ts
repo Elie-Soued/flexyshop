@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { type Cart } from '../interface';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UtilsService {
+  private closeSideNav = new Subject<void>();
+  public closeSideNav$ = this.closeSideNav.asObservable();
+
   constructor() {}
 
   throttle(func: Function, limit: number) {
@@ -24,5 +28,9 @@ export class UtilsService {
 
   getgrandTotal(cart: Cart[]): number {
     return cart.reduce((sum, item) => sum + item.price * item.buyCount, 0);
+  }
+
+  closeSideNavView() {
+    this.closeSideNav.next();
   }
 }

@@ -25,19 +25,6 @@
       </button>
     </a>
 
-    <a [routerLink]="['/checkout']" id="checkoutLink" class="p-2">
-      <button type="button" class="btn" title="Cart">
-        <div class="cart-wrapper position-relative">
-          <fa-icon [icon]="cartIcon" class="fs-3"></fa-icon>
-          @if(cart && cart.length){
-          <span
-            id="cartItems"
-            class="cart-indicator position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-            >{{ cart.length }}</span
-          >
-          }
-        </div>
-      </button>
-    </a>
+    <app-sidenav></app-sidenav>
   </div>
 </nav>
