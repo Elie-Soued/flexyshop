@@ -15,14 +15,19 @@
 
     <div class="col-auto text-end">
       <button
-        class="btn btn-light"
+        class="btn btn-secondary m-2"
         title="Add to cart"
-        style="background-color: white; border: none"
         id="buyButton"
         (click)="throttledBuy()"
       >
-        <fa-icon [icon]="cartIcon" class="fs-3"></fa-icon>
+        Add to cart
       </button>
+
+      <a [routerLink]="['/section', section]">
+        <button class="btn btn-secondary m-2" title="Go back" id="goBack">
+          Back to {{ section }}
+        </button>
+      </a>
     </div>
   </div>
 
@@ -30,7 +35,7 @@
   <div class="row gy-4 align-items-start">
     @if(product){
     <!-- Text Info -->
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-6 order-2 order-lg-1">
       <ul class="list-unstyled">
         <li><strong>Description:</strong> {{ product.description }}</li>
         <li><strong>Price:</strong> {{ product.price | currency : "EUR" }}</li>
@@ -60,18 +65,13 @@
     </div>
 
     <!-- Product Image -->
-    <div class="col-12 col-lg-6 text-center">
+    <div class="col-12 col-lg-6 text-center order-1 order-lg-2">
       <img
         [src]="product.thumbnail"
         alt="{{ product.title }}"
-        class="img-fluid rounded shadow"
-        style="max-width: 100%; max-height: 400px; object-fit: contain"
+        style="max-width: 100%; max-height: 400px"
       />
     </div>
     }
   </div>
-
-  <a [routerLink]="['/section', section]">
-    <button class="btn btn-secondary" title="Go back" id="goBack">Back</button>
-  </a>
 </div>
