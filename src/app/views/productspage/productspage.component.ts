@@ -5,7 +5,9 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { type Product } from '../../interface';
 import { RouterModule } from '@angular/router';
-import { type AppState } from '../../interface';
+import { type AppState, type CartItem } from '../../interface';
+import { ItemService } from '../../services/item.service';
+import { ItemOutOfStock } from '../../store/store.actions';
 
 @Component({
   selector: 'app-productspage',
@@ -21,7 +23,8 @@ export class ProductspageComponent implements OnInit {
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private itemService: ItemService
   ) {
     this.activateRoute.params.subscribe((values) => {
       this.section = values['name'];
@@ -36,5 +39,16 @@ export class ProductspageComponent implements OnInit {
           (product: Product) => product.category === this.section
         );
       });
+  }
+
+  addItem(cartItem: Product): void {
+    let stock = this.itemService.getItemInStock(cartItem.id);
+    if (stock && stock > 0) {
+      this.itemService.addItemToCart(cartItem);
+    } else {
+      this.store.dispatch(
+        ItemOutOfStock({ id: cartItem.id, isOutOfStock: true })
+      );
+    }
   }
 }

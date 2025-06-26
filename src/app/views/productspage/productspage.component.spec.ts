@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { productsMock, productsMock2 } from '../../mockData';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('ProductspageComponent', () => {
   let component: ProductspageComponent;
@@ -20,6 +21,7 @@ describe('ProductspageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ProductspageComponent],
       providers: [
+        provideHttpClient(),
         { provide: Store, useValue: store },
         { provide: ActivatedRoute, useValue: route },
       ],

@@ -7,38 +7,39 @@
       style="background-color: white"
     >
       <div class="col-12 col-md-2 text-center mb-3 mb-md-0">
-        <a [routerLink]="['/', section, product.id]" class="d-inline-block">
-          <img
-            [src]="product.thumbnail"
-            alt="{{ product.title }}"
-            class="img-fluid"
-            style="max-height: 100px; object-fit: contain"
-          />
-        </a>
+        <img
+          [src]="product.thumbnail"
+          alt="{{ product.title }}"
+          class="img-fluid"
+          style="max-height: 100px; object-fit: contain"
+        />
       </div>
 
       <div class="col-12 col-md-6 text-center text-md-start">
-        <a
-          [routerLink]="['/', section, product.id]"
-          class="text-decoration-none text-dark"
-        >
-          <h5 class="fw-semibold mb-0">{{ product.title }}</h5>
-        </a>
+        <h5 class="fw-semibold mb-0">{{ product.title }}</h5>
       </div>
 
-      @if( product.stock){
       <div class="col-12 col-md-4 text-center text-md-end">
+        <div>
+          <button class="btn btn-light m-1" (click)="addItem(product)">
+            Buy
+          </button>
+          <a
+            [routerLink]="['/', section, product.id]"
+            class="btn btn-light m-1"
+          >
+            View
+          </a>
+        </div>
+
+        @if( product.stock){
         <span class="badge bg-success"
           >{{ product.stock }} pieces in stock</span
         >
-      </div>
-
-      } @else {
-
-      <div class="col-12 col-md-4 text-center text-md-end">
+        }@else{
         <span class="badge bg-danger">Out of stock</span>
+        }
       </div>
-      }
     </div>
     }
   </div>
