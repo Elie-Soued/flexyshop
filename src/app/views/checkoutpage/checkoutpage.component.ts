@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { UtilsService } from '../../services/utils.service';
 import { ProductsService } from '../../services/products.service';
-import { deleteItem } from '../../store/store.actions';
+import { deleteItem, setOriginalStock } from '../../store/store.actions';
 import { ItemService } from '../../services/item.service';
 
 @Component({
@@ -71,7 +71,9 @@ export class CheckoutpageComponent implements OnInit {
     }
   }
 
-  removeItem(id: number): void {
-    this.store.dispatch(deleteItem({ id }));
+  removeItem(cartItem: CartItem): void {
+    const { buyCount } = cartItem;
+    this.store.dispatch(deleteItem({ id: cartItem.id }));
+    this.store.dispatch(setOriginalStock({ id: cartItem.id, buyCount }));
   }
 }

@@ -32,10 +32,12 @@ export const productsReducer = createReducer(
     ),
   })),
 
-  on(setOriginalStock, (state, { id }) => ({
+  on(setOriginalStock, (state, { id, buyCount }) => ({
     ...state,
     products: state.products.map((product) =>
-      product.id === id ? { ...product, stock: product.stock + 1 } : product
+      product.id === id
+        ? { ...product, stock: product.stock + buyCount }
+        : product
     ),
   }))
 );

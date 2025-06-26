@@ -21,7 +21,7 @@ export const addBackToStock = createAction(
 
 export const setOriginalStock = createAction(
   '[store] setOriginalStock',
-  props<{ id: number }>()
+  props<{ id: number; buyCount: number }>()
 );
 
 // Cart related actions
