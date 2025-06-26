@@ -23,7 +23,7 @@
     <div class="d-flex column">
       <div class="col-3">
         <img
-          [src]="item.image"
+          [src]="item.thumbnail"
           alt="{{ item.title }}"
           style="max-height: 80px"
         />
@@ -31,7 +31,7 @@
       <div class="d-flex flex-column align-items-center col-6">
         <p class="fw-semibold">{{ item.buyCount }} x {{ item.title }}</p>
         <p>{{ item.price | currency : "EUR" }}</p>
-        <p>{{ item.warranty }}</p>
+        <p>{{ item.warrantyInformation }}</p>
         <p>{{ item.returnPolicy }}</p>
 
         <div
