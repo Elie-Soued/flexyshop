@@ -50,8 +50,8 @@ interface CartItem {
   buyCount: number;
   title: string;
   price: number;
-  image: string;
-  warranty: string;
+  thumbnail: string;
+  warrantyInformation: string;
   returnPolicy: string;
 }
 

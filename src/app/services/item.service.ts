@@ -8,7 +8,7 @@ import {
   deleteItem,
 } from '../store/store.actions';
 import { ProductsService } from './products.service';
-import { type CartItem, type AppState } from '../interface';
+import { type CartItem, type AppState, type Product } from '../interface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,16 +19,16 @@ export class ItemService {
     private productService: ProductsService
   ) {}
 
-  addItemToCart(cartItem: CartItem): void {
-    this.store.dispatch(removeFromStock({ id: cartItem.id }));
+  addItemToCart(item: Product | CartItem): void {
+    this.store.dispatch(removeFromStock({ id: item.id }));
     this.store.dispatch(
       addToCart({
-        id: cartItem.id,
-        price: cartItem.price,
-        title: cartItem.title,
-        image: cartItem.image,
-        warranty: cartItem.warranty,
-        returnPolicy: cartItem.returnPolicy,
+        id: item.id,
+        price: item.price,
+        title: item.title,
+        image: item.thumbnail,
+        warranty: item.warrantyInformation,
+        returnPolicy: item.returnPolicy,
       })
     );
   }
