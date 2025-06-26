@@ -12,7 +12,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { UtilsService } from '../../services/utils.service';
 import { ProductsService } from '../../services/products.service';
-import { deleteItem, setOriginalStock } from '../../store/store.actions';
+import {
+  deleteItem,
+  setOriginalStock,
+  ItemOutOfStock,
+} from '../../store/store.actions';
 import { ItemService } from '../../services/item.service';
 
 @Component({
@@ -28,7 +32,6 @@ export class CheckoutpageComponent implements OnInit {
   add = faAdd;
   minus = faMinus;
   totalAmount = 0;
-  outOfStock = false;
 
   constructor(
     private store: Store<AppState>,
@@ -59,7 +62,9 @@ export class CheckoutpageComponent implements OnInit {
     if (stock && stock > 0) {
       this.itemService.addItemToCart(cartItem);
     } else {
-      this.outOfStock = true;
+      this.store.dispatch(
+        ItemOutOfStock({ id: cartItem.id, isOutOfStock: true })
+      );
     }
   }
 
@@ -67,7 +72,9 @@ export class CheckoutpageComponent implements OnInit {
     this.itemService.reduceItemBuyCount(cartItem);
     let stock = this.itemService.getItemInStock(cartItem.id);
     if (stock && stock > 0) {
-      this.outOfStock = false;
+      this.store.dispatch(
+        ItemOutOfStock({ id: cartItem.id, isOutOfStock: false })
+      );
     }
   }
 

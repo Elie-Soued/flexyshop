@@ -14,6 +14,7 @@ describe('UtilsService', () => {
       thumbnail: 'https://flexyshopimages.pilexlaflex.com/images/16.webp',
       warrantyInformation: '',
       returnPolicy: '',
+      isOutOfStock: false,
     },
     {
       id: 11,
@@ -23,6 +24,7 @@ describe('UtilsService', () => {
       thumbnail: 'https://flexyshopimages.pilexlaflex.com/images/11.webp',
       warrantyInformation: '',
       returnPolicy: '',
+      isOutOfStock: false,
     },
   ];
 

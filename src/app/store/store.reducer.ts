@@ -8,6 +8,7 @@ import {
   reduceBuyCount,
   deleteItem,
   setOriginalStock,
+  ItemOutOfStock,
 } from './store.actions';
 import { CartItem, type productsState, type cartState } from '../interface';
 
@@ -49,7 +50,15 @@ export const cartReducer = createReducer(
     addToCart,
     (
       state: cartState,
-      { id, price, title, thumbnail, warrantyInformation, returnPolicy }
+      {
+        id,
+        price,
+        title,
+        thumbnail,
+        warrantyInformation,
+        returnPolicy,
+        isOutOfStock,
+      }
     ) => {
       const existingItem = state.items.find((item: CartItem) => item.id === id);
 
@@ -77,13 +86,13 @@ export const cartReducer = createReducer(
               thumbnail,
               warrantyInformation,
               returnPolicy,
+              isOutOfStock,
             },
           ],
         };
       }
     }
   ),
-
   on(clearCart, () => cartInitialState),
   on(reduceBuyCount, (state, { id }) => {
     return {
@@ -97,6 +106,14 @@ export const cartReducer = createReducer(
   on(deleteItem, (state, { id }) => {
     return {
       items: state.items.filter((item) => item.id !== id),
+    };
+  }),
+
+  on(ItemOutOfStock, (state, { id, isOutOfStock }) => {
+    return {
+      items: state.items.map((item) =>
+        item.id === id ? { ...item, isOutOfStock } : item
+      ),
     };
   })
 );

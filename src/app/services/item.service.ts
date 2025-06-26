@@ -19,7 +19,7 @@ export class ItemService {
     private productService: ProductsService
   ) {}
 
-  addItemToCart(item: Product | CartItem): void {
+  addItemToCart(item: any): void {
     this.store.dispatch(removeFromStock({ id: item.id }));
     this.store.dispatch(
       addToCart({
@@ -29,6 +29,7 @@ export class ItemService {
         thumbnail: item.thumbnail,
         warrantyInformation: item.warrantyInformation,
         returnPolicy: item.returnPolicy,
+        isOutOfStock: false,
       })
     );
   }

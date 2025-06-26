@@ -94,6 +94,7 @@ describe('ProductdetailpageComponent', () => {
           'https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp',
         warrantyInformation: '',
         returnPolicy: '',
+        isOutOfStock: false,
       })
     );
   });

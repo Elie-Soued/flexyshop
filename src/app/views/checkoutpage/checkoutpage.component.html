@@ -40,7 +40,7 @@
           <button
             class="btn btn-dark"
             (click)="addItem(item)"
-            [disabled]="outOfStock"
+            [disabled]="item.isOutOfStock"
           >
             <fa-icon [icon]="add"></fa-icon>
           </button>
@@ -53,7 +53,7 @@
           </button>
         </div>
 
-        @if(outOfStock){
+        @if(item.isOutOfStock){
 
         <div class="col-12 text-center p-2">
           <span class="badge bg-danger">Out of stock</span>

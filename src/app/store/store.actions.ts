@@ -36,6 +36,7 @@ export const addToCart = createAction(
     thumbnail: string;
     warrantyInformation: string;
     returnPolicy: string;
+    isOutOfStock: boolean;
   }>()
 );
 
@@ -50,3 +51,8 @@ export const deleteItem = createAction(
 );
 
 export const clearCart = createAction('[cart] clearCart');
+
+export const ItemOutOfStock = createAction(
+  '[cart] itemOutOfStock',
+  props<{ id: number; isOutOfStock: boolean }>()
+);

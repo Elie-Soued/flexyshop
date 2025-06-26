@@ -53,6 +53,7 @@ interface CartItem {
   thumbnail: string;
   warrantyInformation: string;
   returnPolicy: string;
+  isOutOfStock: boolean;
 }
 
 type Cart = CartItem[];
