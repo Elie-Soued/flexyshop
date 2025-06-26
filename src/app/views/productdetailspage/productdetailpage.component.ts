@@ -15,6 +15,7 @@ import { ProductsService } from '../../services/products.service';
 import { UtilsService } from '../../services/utils.service';
 import { ToastService } from '../../services/toast.service';
 import { ToastComponent } from './toast/toast.component';
+import { ItemService } from '../../services/item.service';
 
 @Component({
   selector: 'app-productdetailpage',
@@ -43,7 +44,8 @@ export class ProductdetailpageComponent implements OnInit {
     private store: Store<AppState>,
     private productService: ProductsService,
     private toastService: ToastService,
-    public utilsService: UtilsService
+    public utilsService: UtilsService,
+    private itemService: ItemService
   ) {
     this.throttledBuy = this.utilsService.throttle(() => this.buy(), 1000);
     this.activateRoute.params.subscribe((values) => {
@@ -64,17 +66,7 @@ export class ProductdetailpageComponent implements OnInit {
 
   buy(): void {
     if (this.product.stock > 0) {
-      this.store.dispatch(removeFromStock({ id: this.product.id }));
-      this.store.dispatch(
-        addToCart({
-          id: this.product.id,
-          price: this.product.price,
-          title: this.product.title,
-          image: this.product.thumbnail,
-          warranty: this.product.warrantyInformation,
-          returnPolicy: this.product.returnPolicy,
-        })
-      );
+      this.itemService.addItemToCart(this.product);
       this.toastService.updateToastStatus('success');
     } else {
       this.toastService.updateToastStatus('error');

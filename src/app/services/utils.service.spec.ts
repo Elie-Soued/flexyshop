@@ -12,6 +12,8 @@ describe('UtilsService', () => {
       price: 1.99,
       title: 'Apple',
       image: 'https://flexyshopimages.pilexlaflex.com/images/16.webp',
+      warranty: '',
+      returnPolicy: '',
     },
     {
       id: 11,
@@ -19,6 +21,8 @@ describe('UtilsService', () => {
       price: 1899.99,
       title: 'Annibale Colombo Bed',
       image: 'https://flexyshopimages.pilexlaflex.com/images/11.webp',
+      warranty: '',
+      returnPolicy: '',
     },
   ];
 

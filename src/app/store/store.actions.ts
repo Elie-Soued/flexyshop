@@ -11,6 +11,16 @@ export const removeFromStock = createAction(
   props<{ id: number }>()
 );
 
+export const addBackToStock = createAction(
+  '[store] addBackToStock',
+  props<{ id: number }>()
+);
+
+export const setOriginalStock = createAction(
+  '[store] setOriginalStock',
+  props<{ id: number }>()
+);
+
 export const addToCart = createAction(
   '[cart] addToCart',
   props<{

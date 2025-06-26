@@ -13,11 +13,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { UtilsService } from '../../services/utils.service';
 import { ProductsService } from '../../services/products.service';
-import {
-  addToCart,
-  reduceBuyCount,
-  deleteItem,
-} from '../../store/store.actions';
+import { reduceBuyCount, deleteItem } from '../../store/store.actions';
+import { ItemService } from '../../services/item.service';
 
 @Component({
   selector: 'app-checkoutpage',
@@ -32,11 +29,13 @@ export class CheckoutpageComponent implements OnInit {
   add = faAdd;
   minus = faMinus;
   totalAmount = 0;
+  outOfStock = false;
 
   constructor(
     private store: Store<AppState>,
     private productService: ProductsService,
-    public utilsService: UtilsService
+    public utilsService: UtilsService,
+    private itemService: ItemService
   ) {}
 
   ngOnInit(): void {
@@ -57,20 +56,20 @@ export class CheckoutpageComponent implements OnInit {
   }
 
   addItem(item: any) {
-    this.store.dispatch(
-      addToCart({
-        id: item.id,
-        price: item.price,
-        title: item.title,
-        image: item.thumbnail,
-        warranty: item.warrantyInformation,
-        returnPolicy: item.returnPolicy,
-      })
-    );
+    let stock = this.itemService.getItemInStock(item.id);
+    if (stock && stock > 0) {
+      this.itemService.addItemToCart(item);
+    } else {
+      this.outOfStock = true;
+    }
   }
 
-  reduceItemBuyCount(id: number) {
-    this.store.dispatch(reduceBuyCount({ id }));
+  reduceItemBuyCount(item: any) {
+    this.itemService.reduceItemBuyCount(item);
+    let stock = this.itemService.getItemInStock(item.id);
+    if (stock && stock > 0) {
+      this.outOfStock = false;
+    }
   }
 
   removeItem(id: number) {

@@ -3,9 +3,11 @@ import {
   setProducts,
   addToCart,
   removeFromStock,
+  addBackToStock,
   clearCart,
   reduceBuyCount,
   deleteItem,
+  setOriginalStock,
 } from './store.actions';
 import { type Product, type Cart } from '../interface';
 
@@ -29,10 +31,24 @@ const cartInitialState: cartState = { items: [] };
 export const productsReducer = createReducer(
   productsInitialState,
   on(setProducts, (state, { products }) => ({ ...state, products })),
+
   on(removeFromStock, (state, { id }) => ({
     ...state,
     products: state.products.map((product) =>
       product.id === id ? { ...product, stock: product.stock - 1 } : product
+    ),
+  })),
+  on(addBackToStock, (state, { id }) => ({
+    ...state,
+    products: state.products.map((product) =>
+      product.id === id ? { ...product, stock: product.stock + 1 } : product
+    ),
+  })),
+
+  on(setOriginalStock, (state, { id }) => ({
+    ...state,
+    products: state.products.map((product) =>
+      product.id === id ? { ...product, stock: product.stock + 1 } : product
     ),
   }))
 );
