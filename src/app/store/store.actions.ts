@@ -13,7 +13,14 @@ export const removeFromStock = createAction(
 
 export const addToCart = createAction(
   '[cart] addToCart',
-  props<{ id: number; price: number; title: string; image: string }>()
+  props<{
+    id: number;
+    price: number;
+    title: string;
+    image: string;
+    warranty: string;
+    returnPolicy: string;
+  }>()
 );
 
 export const reduceBuyCount = createAction(

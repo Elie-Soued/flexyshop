@@ -40,30 +40,46 @@ export const productsReducer = createReducer(
 export const cartReducer = createReducer(
   cartInitialState,
 
-  on(addToCart, (state: any, { id, price, title, image }) => {
-    const existingItem = state.items.find((item: any) => item.id === id);
+  on(
+    addToCart,
+    (state: any, { id, price, title, image, warranty, returnPolicy }) => {
+      const existingItem = state.items.find((item: any) => item.id === id);
 
-    if (existingItem) {
-      return {
-        ...state,
-        items: state.items.map((item: any) =>
-          item.id === id
-            ? {
-                ...item,
-                buyCount: item.buyCount + 1,
-                price: item.price,
-                title: item.title,
-                image: item.image,
-              }
-            : item
-        ),
-      };
-    } else {
-      return {
-        items: [...state.items, { id: id, buyCount: 1, price, title, image }],
-      };
+      if (existingItem) {
+        return {
+          ...state,
+          items: state.items.map((item: any) =>
+            item.id === id
+              ? {
+                  ...item,
+                  buyCount: item.buyCount + 1,
+                  price: item.price,
+                  title: item.title,
+                  image: item.image,
+                  warranty: item.warranty,
+                  returnPolicy: item.returnPolicy,
+                }
+              : item
+          ),
+        };
+      } else {
+        return {
+          items: [
+            ...state.items,
+            {
+              id: id,
+              buyCount: 1,
+              price,
+              title,
+              image,
+              warranty,
+              returnPolicy,
+            },
+          ],
+        };
+      }
     }
-  }),
+  ),
 
   on(clearCart, () => cartInitialState),
   on(reduceBuyCount, (state, { id }) => {

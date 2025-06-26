@@ -51,5 +51,7 @@ interface Cart {
   title: string;
   price: number;
   image: string;
+  warranty: string;
+  returnPolicy: string;
 }
 export { type Product, type CategoryWithImage, type Cart };

@@ -63,6 +63,8 @@ export class CheckoutpageComponent implements OnInit {
         price: item.price,
         title: item.title,
         image: item.thumbnail,
+        warranty: item.warrantyInformation,
+        returnPolicy: item.returnPolicy,
       })
     );
   }

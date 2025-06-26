@@ -71,6 +71,8 @@ export class ProductdetailpageComponent implements OnInit {
           price: this.product.price,
           title: this.product.title,
           image: this.product.thumbnail,
+          warranty: this.product.warrantyInformation,
+          returnPolicy: this.product.returnPolicy,
         })
       );
       this.toastService.updateToastStatus('success');

@@ -17,12 +17,13 @@
 
       }
       <button
-        class="btn m-2"
+        class="btn btn-secondary m-3"
         title="Add to cart"
         id="buyButton"
         (click)="throttledBuy()"
       >
-        <fa-icon [icon]="cartIcon" class="fs-3"></fa-icon>
+        <span class="m-1">Add to cart</span>
+        <span class="m-1"> <fa-icon [icon]="cartIcon"></fa-icon></span>
       </button>
     </div>
   </div>
@@ -63,11 +64,11 @@
     </div>
 
     <!-- Product Image -->
-    <div class="col-12 col-lg-6 text-center order-1 order-lg-2">
+    <div class="col-12 col-lg-6 h-100 text-center order-1 order-lg-2;">
       <img
         [src]="product.thumbnail"
         alt="{{ product.title }}"
-        style="max-width: 100%; max-height: 400px"
+        style="max-width: 100%; max-height: 600px"
       />
     </div>
     }
