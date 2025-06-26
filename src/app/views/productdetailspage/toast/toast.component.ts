@@ -21,7 +21,7 @@ export class ToastComponent {
       this.toast = Toast.getOrCreateInstance(
         document.getElementById('toast')!,
         {
-          delay: 500,
+          delay: 3000,
         }
       );
 
