@@ -45,7 +45,7 @@ interface CategoryWithImage {
   thumbnail: string;
 }
 
-interface Cart {
+interface CartItem {
   id: number;
   buyCount: number;
   title: string;
@@ -54,4 +54,28 @@ interface Cart {
   warranty: string;
   returnPolicy: string;
 }
-export { type Product, type CategoryWithImage, type Cart };
+
+type Cart = CartItem[];
+
+interface productsState {
+  products: Product[];
+}
+
+interface cartState {
+  items: Cart;
+}
+
+interface AppState {
+  products: productsState;
+  cart: cartState;
+}
+
+export {
+  type Product,
+  type CategoryWithImage,
+  type CartItem,
+  type Cart,
+  type productsState,
+  type cartState,
+  type AppState,
+};

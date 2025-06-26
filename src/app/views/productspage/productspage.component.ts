@@ -4,8 +4,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { type Product } from '../../interface';
-import { type AppState } from '../../store/store.reducer';
 import { RouterModule } from '@angular/router';
+import { type AppState } from '../../interface';
 
 @Component({
   selector: 'app-productspage',

@@ -8,9 +8,8 @@ import { faCartShopping, faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
-import { type Cart } from '../../interface';
+import { type Cart, type AppState } from '../../interface';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../store/store.reducer';
 import { CheckoutpageComponent } from '../../views/checkoutpage/checkoutpage.component';
 import { UtilsService } from '../../services/utils.service';
 
@@ -31,7 +30,7 @@ import { UtilsService } from '../../services/utils.service';
 export class SidenavComponent {
   cartIcon = faCartShopping;
   home = faHome;
-  cart: Cart[] = [];
+  cart: Cart = [];
   @ViewChild('drawer') drawer!: MatSidenav;
 
   constructor(

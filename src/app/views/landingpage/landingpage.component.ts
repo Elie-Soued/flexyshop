@@ -10,8 +10,8 @@ import {
   type Product,
   type CategoryWithImage,
   type Cart,
+  type AppState,
 } from '../../interface';
-import { AppState } from '../../store/store.reducer';
 
 @Component({
   selector: 'app-landingpage',
@@ -22,7 +22,7 @@ import { AppState } from '../../store/store.reducer';
 export class LandingpageComponent implements OnInit {
   categories: CategoryWithImage[] = [];
   cartIcon = faCartShopping;
-  cart: Cart[] = [];
+  cart: Cart = [];
   currentYear = new Date().getFullYear();
 
   constructor(

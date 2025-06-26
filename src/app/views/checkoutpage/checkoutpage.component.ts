@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
-import { type Cart } from '../../interface';
+import { type Cart, type CartItem, type AppState } from '../../interface';
 import { Store } from '@ngrx/store';
-import { type AppState } from '../../store/store.reducer';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -13,7 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { UtilsService } from '../../services/utils.service';
 import { ProductsService } from '../../services/products.service';
-import { reduceBuyCount, deleteItem } from '../../store/store.actions';
+import { deleteItem } from '../../store/store.actions';
 import { ItemService } from '../../services/item.service';
 
 @Component({
@@ -23,7 +22,7 @@ import { ItemService } from '../../services/item.service';
   styleUrl: './checkoutpage.component.css',
 })
 export class CheckoutpageComponent implements OnInit {
-  cart!: Cart[];
+  cart!: Cart;
   close = faClose;
   trash = faTrash;
   add = faAdd;
@@ -47,32 +46,32 @@ export class CheckoutpageComponent implements OnInit {
       });
   }
 
-  checkout() {
+  checkout(): void {
     this.productService.checkout(this.totalAmount);
   }
 
-  closeCheckoutView() {
+  closeCheckoutView(): void {
     this.utilsService.closeSideNavView();
   }
 
-  addItem(item: any) {
-    let stock = this.itemService.getItemInStock(item.id);
+  addItem(cartItem: CartItem): void {
+    let stock = this.itemService.getItemInStock(cartItem.id);
     if (stock && stock > 0) {
-      this.itemService.addItemToCart(item);
+      this.itemService.addItemToCart(cartItem);
     } else {
       this.outOfStock = true;
     }
   }
 
-  reduceItemBuyCount(item: any) {
-    this.itemService.reduceItemBuyCount(item);
-    let stock = this.itemService.getItemInStock(item.id);
+  reduceItemBuyCount(cartItem: CartItem): void {
+    this.itemService.reduceItemBuyCount(cartItem);
+    let stock = this.itemService.getItemInStock(cartItem.id);
     if (stock && stock > 0) {
       this.outOfStock = false;
     }
   }
 
-  removeItem(id: number) {
+  removeItem(id: number): void {
     this.store.dispatch(deleteItem({ id }));
   }
 }

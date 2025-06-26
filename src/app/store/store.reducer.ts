@@ -9,20 +9,7 @@ import {
   deleteItem,
   setOriginalStock,
 } from './store.actions';
-import { type Product, type Cart } from '../interface';
-
-export interface productsState {
-  products: Product[];
-}
-
-export interface cartState {
-  items: Cart[];
-}
-
-export interface AppState {
-  products: productsState;
-  cart: cartState;
-}
+import { CartItem, type productsState, type cartState } from '../interface';
 
 const productsInitialState: productsState = { products: [] };
 
@@ -58,22 +45,17 @@ export const cartReducer = createReducer(
 
   on(
     addToCart,
-    (state: any, { id, price, title, image, warranty, returnPolicy }) => {
-      const existingItem = state.items.find((item: any) => item.id === id);
+    (state: cartState, { id, price, title, image, warranty, returnPolicy }) => {
+      const existingItem = state.items.find((item: CartItem) => item.id === id);
 
       if (existingItem) {
         return {
           ...state,
-          items: state.items.map((item: any) =>
+          items: state.items.map((item: CartItem) =>
             item.id === id
               ? {
                   ...item,
                   buyCount: item.buyCount + 1,
-                  price: item.price,
-                  title: item.title,
-                  image: item.image,
-                  warranty: item.warranty,
-                  returnPolicy: item.returnPolicy,
                 }
               : item
           ),

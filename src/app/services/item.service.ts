@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { type AppState } from '../store/store.reducer';
 import {
   addBackToStock,
   addToCart,
@@ -9,6 +8,7 @@ import {
   deleteItem,
 } from '../store/store.actions';
 import { ProductsService } from './products.service';
+import { type CartItem, type AppState } from '../interface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,31 +19,30 @@ export class ItemService {
     private productService: ProductsService
   ) {}
 
-  addItemToCart(product: any) {
-    this.store.dispatch(removeFromStock({ id: product.id }));
-
+  addItemToCart(cartItem: CartItem): void {
+    this.store.dispatch(removeFromStock({ id: cartItem.id }));
     this.store.dispatch(
       addToCart({
-        id: product.id,
-        price: product.price,
-        title: product.title,
-        image: product.thumbnail,
-        warranty: product.warrantyInformation,
-        returnPolicy: product.returnPolicy,
+        id: cartItem.id,
+        price: cartItem.price,
+        title: cartItem.title,
+        image: cartItem.image,
+        warranty: cartItem.warranty,
+        returnPolicy: cartItem.returnPolicy,
       })
     );
   }
 
-  reduceItemBuyCount(product: any) {
-    this.store.dispatch(addBackToStock({ id: product.id }));
-    this.store.dispatch(reduceBuyCount({ id: product.id }));
+  reduceItemBuyCount(cartItem: CartItem): void {
+    this.store.dispatch(addBackToStock({ id: cartItem.id }));
+    this.store.dispatch(reduceBuyCount({ id: cartItem.id }));
   }
 
-  removeItemFromCart(product: any) {
-    this.store.dispatch(deleteItem({ id: product.id }));
+  removeItemFromCart(cartItem: CartItem): void {
+    this.store.dispatch(deleteItem({ id: cartItem.id }));
   }
 
-  getItemInStock(id: number) {
+  getItemInStock(id: number): number {
     let stock;
     this.store
       .select((state: AppState) => state.products)
@@ -51,6 +50,6 @@ export class ItemService {
         stock = this.productService.getProduct(products, id).stock!;
       });
 
-    return stock;
+    return stock!;
   }
 }

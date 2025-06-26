@@ -8,9 +8,7 @@ import {
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import { type Cart } from '../../interface';
-import { type AppState } from '../../store/store.reducer';
-import { addToCart, removeFromStock } from '../../store/store.actions';
+import { type Cart, type AppState } from '../../interface';
 import { ProductsService } from '../../services/products.service';
 import { UtilsService } from '../../services/utils.service';
 import { ToastService } from '../../services/toast.service';
@@ -33,7 +31,7 @@ export class ProductdetailpageComponent implements OnInit {
   productID: number = 0;
   section: string = '';
   product!: any;
-  cart!: Cart[];
+  cart!: Cart;
   cartIcon = faCartPlus;
   star = faStar;
   back = faArrowLeft;

@@ -3,8 +3,8 @@ import { faHome, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../store/store.reducer';
 import { clearCart } from '../../store/store.actions';
+import { type AppState } from '../../interface';
 
 @Component({
   selector: 'app-successpage',
