@@ -33,8 +33,8 @@ export const addToCart = createAction(
     id: number;
     price: number;
     title: string;
-    image: string;
-    warranty: string;
+    thumbnail: string;
+    warrantyInformation: string;
     returnPolicy: string;
   }>()
 );

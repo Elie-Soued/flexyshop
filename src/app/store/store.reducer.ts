@@ -47,7 +47,10 @@ export const cartReducer = createReducer(
 
   on(
     addToCart,
-    (state: cartState, { id, price, title, image, warranty, returnPolicy }) => {
+    (
+      state: cartState,
+      { id, price, title, thumbnail, warrantyInformation, returnPolicy }
+    ) => {
       const existingItem = state.items.find((item: CartItem) => item.id === id);
 
       if (existingItem) {
@@ -71,8 +74,8 @@ export const cartReducer = createReducer(
               buyCount: 1,
               price,
               title,
-              image,
-              warranty,
+              thumbnail,
+              warrantyInformation,
               returnPolicy,
             },
           ],
