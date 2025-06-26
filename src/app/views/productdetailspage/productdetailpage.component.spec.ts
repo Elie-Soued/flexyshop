@@ -90,9 +90,9 @@ describe('ProductdetailpageComponent', () => {
         id: 1,
         price: 9.99,
         title: 'Essence Mascara Lash Princess',
-        image:
+        thumbnail:
           'https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp',
-        warranty: '',
+        warrantyInformation: '',
         returnPolicy: '',
       })
     );

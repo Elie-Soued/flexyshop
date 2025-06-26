@@ -26,8 +26,8 @@ export class ItemService {
         id: item.id,
         price: item.price,
         title: item.title,
-        image: item.thumbnail,
-        warranty: item.warrantyInformation,
+        thumbnail: item.thumbnail,
+        warrantyInformation: item.warrantyInformation,
         returnPolicy: item.returnPolicy,
       })
     );
