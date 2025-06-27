@@ -6,9 +6,10 @@ import {
   removeFromStock,
   reduceBuyCount,
   deleteItem,
+  setOriginalStock,
 } from '../store/store.actions';
 import { ProductsService } from './products.service';
-import { type CartItem, type AppState, type Product } from '../interface';
+import { type CartItem, type AppState, type Cart } from '../interface';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +41,15 @@ export class ItemService {
   }
 
   removeItemFromCart(cartItem: CartItem): void {
+    const { buyCount } = cartItem;
     this.store.dispatch(deleteItem({ id: cartItem.id }));
+    this.store.dispatch(setOriginalStock({ id: cartItem.id, buyCount }));
+  }
+
+  clearCart(cart: Cart): void {
+    cart.forEach((cartItem) => {
+      this.removeItemFromCart(cartItem);
+    });
   }
 
   getItemInStock(id: number): number {

@@ -1,21 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { ItemService } from '../../../services/item.service';
-import {
-  deleteItem,
-  ItemOutOfStock,
-  setOriginalStock,
-} from '../../../store/store.actions';
+import { ItemOutOfStock } from '../../../store/store.actions';
 import { CurrencyPipe } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { type CartItem, type AppState, type Cart } from '../../../interface';
 import { UtilsService } from '../../../services/utils.service';
 import { Store } from '@ngrx/store';
-import {
-  faClose,
-  faTrash,
-  faAdd,
-  faMinus,
-} from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-cartcontent',
@@ -25,7 +16,6 @@ import {
 })
 export class CartcontentComponent {
   @Input({ required: true }) cart!: Cart;
-  close = faClose;
   trash = faTrash;
   add = faAdd;
   minus = faMinus;
@@ -47,6 +37,10 @@ export class CartcontentComponent {
     }
   }
 
+  removeItem(cartItem: CartItem): void {
+    this.itemService.removeItemFromCart(cartItem);
+  }
+
   reduceItemBuyCount(cartItem: CartItem): void {
     this.itemService.reduceItemBuyCount(cartItem);
     let stock = this.itemService.getItemInStock(cartItem.id);
@@ -55,11 +49,5 @@ export class CartcontentComponent {
         ItemOutOfStock({ id: cartItem.id, isOutOfStock: false })
       );
     }
-  }
-
-  removeItem(cartItem: CartItem): void {
-    const { buyCount } = cartItem;
-    this.store.dispatch(deleteItem({ id: cartItem.id }));
-    this.store.dispatch(setOriginalStock({ id: cartItem.id, buyCount }));
   }
 }

@@ -4,10 +4,11 @@ import { type Cart, type AppState } from '../../interface';
 import { Store } from '@ngrx/store';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { faClose, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { UtilsService } from '../../services/utils.service';
 import { ProductsService } from '../../services/products.service';
 import { CartcontentComponent } from './cartcontent/cartcontent.component';
+import { ItemService } from '../../services/item.service';
 
 @Component({
   selector: 'app-cart-view',
@@ -23,11 +24,13 @@ import { CartcontentComponent } from './cartcontent/cartcontent.component';
 export class CartViewComponent implements OnInit {
   cart!: Cart;
   close = faClose;
+  deleteAll = faTrashAlt;
   totalAmount = 0;
 
   constructor(
     private store: Store<AppState>,
     private productService: ProductsService,
+    private itemService: ItemService,
     public utilsService: UtilsService
   ) {}
 
@@ -42,6 +45,10 @@ export class CartViewComponent implements OnInit {
 
   checkout(): void {
     this.productService.checkout(this.totalAmount);
+  }
+
+  clearCart(): void {
+    this.itemService.clearCart(this.cart);
   }
 
   closeCheckoutView(): void {
