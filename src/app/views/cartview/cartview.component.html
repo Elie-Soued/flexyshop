@@ -80,14 +80,14 @@
   <div class="mt-3">
     <div class="d-flex columns justify-content-between">
       <div>
-        <p class="fw-semibold">Total</p>
         <p class="fw-semibold">Shipping costs</p>
+        <p class="fw-semibold">Total</p>
       </div>
       <div>
+        <p class="fw-semibold">{{ 0 | currency : "EUR" }}</p>
         <p class="fw-semibold">
           {{ utilsService.getgrandTotal(cart) | currency : "EUR" }}
         </p>
-        <p class="fw-semibold">{{ 0 | currency : "EUR" }}</p>
       </div>
     </div>
 

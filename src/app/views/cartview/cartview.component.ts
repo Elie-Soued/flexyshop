@@ -20,12 +20,12 @@ import {
 import { ItemService } from '../../services/item.service';
 
 @Component({
-  selector: 'app-checkoutpage',
+  selector: 'app-cart-view',
   imports: [RouterModule, FontAwesomeModule, CurrencyPipe],
-  templateUrl: './checkoutpage.component.html',
-  styleUrl: './checkoutpage.component.css',
+  templateUrl: './cartview.component.html',
+  styleUrl: './cartview.component.css',
 })
-export class CheckoutpageComponent implements OnInit {
+export class CartViewComponent implements OnInit {
   cart!: Cart;
   close = faClose;
   trash = faTrash;

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CheckoutpageComponent } from './checkoutpage.component';
+import { CartViewComponent } from './cartview.component';
 import { Store } from '@ngrx/store';
 import { provideRouter } from '@angular/router';
 import { of } from 'rxjs';
@@ -8,15 +8,15 @@ import { cart } from '../../mockData';
 import { provideHttpClient } from '@angular/common/http';
 
 describe('CheckoutpageComponent', () => {
-  let component: CheckoutpageComponent;
-  let fixture: ComponentFixture<CheckoutpageComponent>;
+  let component: CartViewComponent;
+  let fixture: ComponentFixture<CartViewComponent>;
   let store: jasmine.SpyObj<Store>;
 
   beforeEach(async () => {
     store = jasmine.createSpyObj('Store', ['select']);
 
     await TestBed.configureTestingModule({
-      imports: [CheckoutpageComponent],
+      imports: [CartViewComponent],
       providers: [
         provideRouter([]),
         provideHttpClient(),
@@ -27,7 +27,7 @@ describe('CheckoutpageComponent', () => {
 
   it('Make sure the checkoutPage is correctly rendered', () => {
     //Prepare
-    fixture = TestBed.createComponent(CheckoutpageComponent);
+    fixture = TestBed.createComponent(CartViewComponent);
     component = fixture.componentInstance;
     store.select.and.returnValue(of({ items: cart }));
     fixture.detectChanges();
@@ -41,7 +41,7 @@ describe('CheckoutpageComponent', () => {
 
   it('If no items are present in the cart, display message', () => {
     //Prepare
-    fixture = TestBed.createComponent(CheckoutpageComponent);
+    fixture = TestBed.createComponent(CartViewComponent);
     component = fixture.componentInstance;
     store.select.and.returnValue(of({ items: [] }));
     fixture.detectChanges();

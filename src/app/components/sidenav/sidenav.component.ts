@@ -10,7 +10,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { type Cart, type AppState } from '../../interface';
 import { Store } from '@ngrx/store';
-import { CheckoutpageComponent } from '../../views/checkoutpage/checkoutpage.component';
+import { CartViewComponent } from '../../views/cartview/cartview.component';
 import { UtilsService } from '../../services/utils.service';
 
 @Component({
@@ -22,7 +22,7 @@ import { UtilsService } from '../../services/utils.service';
     MatListModule,
     MatButtonModule,
     FontAwesomeModule,
-    CheckoutpageComponent,
+    CartViewComponent,
   ],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.css',
