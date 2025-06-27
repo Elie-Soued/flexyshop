@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { type Product, type CategoryWithImage } from '../interface';
+import { categoryName } from '../mockData';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ export class DataService {
 
     return Array.from(categoryMap.entries()).map(([name, thumbnail]) => ({
       name,
+      title: categoryName[name],
       thumbnail,
     }));
   }

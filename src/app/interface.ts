@@ -42,6 +42,7 @@ interface Product {
 
 interface CategoryWithImage {
   name: string;
+  title: string;
   thumbnail: string;
 }
 

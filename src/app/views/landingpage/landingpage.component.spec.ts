@@ -24,6 +24,7 @@ describe('LandingpageComponent', () => {
   const categoriesExtracted = [
     {
       name: 'beauty',
+      title: 'Beauty',
       thumbnail: 'https://flexyshopimages.pilexlaflex.com/images/1.webp',
     },
   ];

@@ -39,6 +39,7 @@ describe('DataService', () => {
     expect(categories).toEqual([
       {
         name: 'beauty',
+        title: 'Beauty',
         thumbnail:
           'https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp',
       },

@@ -176,4 +176,31 @@ const cart = [
   },
 ];
 
-export { productsMock, productsMock2, cart };
+const categoryName: { [key: string]: string } = {
+  beauty: 'Beauty',
+  fragrances: 'Fragrances',
+  furniture: 'Furniture',
+  groceries: 'Groceries',
+  'home-decoration': 'Home decoration',
+  'kitchen-accessories': 'Kitchen accessories',
+  laptops: 'Laptops',
+  'mens-shirts': "Men's shirts",
+  'mens-shoes': "Men's shoes",
+  'mens-watches': "Men's watches",
+  'mobile-accessories': 'Mobile accessories',
+  motorcycle: 'Motorcycle',
+  'skin-care': 'Skin care',
+  smartphones: 'Smartphones',
+  'sports-accessories': 'Sports accessories',
+  sunglasses: 'Sunglasses',
+  tablets: 'Tablets',
+  tops: 'Tops',
+  vehicle: 'Vehicle',
+  'womens-bags': "Women's bags",
+  'womens-dresses': "Women's dresses",
+  'womens-jewellery': "Women's jewellery",
+  'womens-shoes': "Women's shoes",
+  'womens-watches': "Women's watches",
+};
+
+export { productsMock, productsMock2, cart, categoryName };
