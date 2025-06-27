@@ -17,6 +17,7 @@
 
       <div class="col-12 col-md-6 text-center text-md-start">
         <h5 class="fw-semibold mb-0">{{ product.title }}</h5>
+        <app-stars [product]="product"></app-stars>
       </div>
 
       <div class="col-12 col-md-4 text-center text-md-end">
@@ -42,6 +43,14 @@
         >
         }@else{
         <span class="badge bg-danger">Out of stock</span>
+        } @if(isAddedToCart){
+        <div>
+          <p class="p-1">
+            <fa-icon [icon]="check"></fa-icon>
+
+            Added to cart
+          </p>
+        </div>
         }
       </div>
     </div>

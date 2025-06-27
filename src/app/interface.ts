@@ -11,6 +11,14 @@ interface Meta {
   qrCode: string;
 }
 
+interface Reviews {
+  comment: string;
+  date: string;
+  rating: number;
+  reviewerEmail: string;
+  reviewName: string;
+}
+
 interface Review {
   [key: string]: any;
 }
@@ -80,4 +88,5 @@ export {
   type productsState,
   type cartState,
   type AppState,
+  type Reviews,
 };

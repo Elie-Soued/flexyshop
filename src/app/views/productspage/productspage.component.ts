@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { type Product } from '../../interface';
 import { RouterModule } from '@angular/router';
-import { type AppState, type CartItem } from '../../interface';
+import { type AppState } from '../../interface';
 import { ItemService } from '../../services/item.service';
 import { ItemOutOfStock } from '../../store/store.actions';
+import { StarsComponent } from '../../components/stars/stars.component';
 
 @Component({
   selector: 'app-productspage',
-  imports: [FontAwesomeModule, RouterModule],
+  imports: [FontAwesomeModule, RouterModule, StarsComponent],
   templateUrl: './productspage.component.html',
   styleUrl: './productspage.component.css',
 })
@@ -20,6 +21,8 @@ export class ProductspageComponent implements OnInit {
   products: Product[] = [];
   categoryProducts: Product[] = [];
   home = faHome;
+  check = faCheck;
+  isAddedToCart = false;
 
   constructor(
     private activateRoute: ActivatedRoute,

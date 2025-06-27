@@ -2,11 +2,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {
-  faCartPlus,
-  faStar,
-  faArrowLeft,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { type Cart, type AppState } from '../../interface';
 import { ProductsService } from '../../services/products.service';
@@ -14,6 +10,7 @@ import { UtilsService } from '../../services/utils.service';
 import { ToastService } from '../../services/toast.service';
 import { ToastComponent } from './toast/toast.component';
 import { ItemService } from '../../services/item.service';
+import { StarsComponent } from '../../components/stars/stars.component';
 
 @Component({
   selector: 'app-productdetailpage',
@@ -23,6 +20,7 @@ import { ItemService } from '../../services/item.service';
     FontAwesomeModule,
     RouterModule,
     ToastComponent,
+    StarsComponent,
   ],
   templateUrl: './productdetailpage.component.html',
   styleUrl: './productdetailpage.component.css',
@@ -33,7 +31,6 @@ export class ProductdetailpageComponent implements OnInit {
   product!: any;
   cart!: Cart;
   cartIcon = faCartPlus;
-  star = faStar;
   back = faArrowLeft;
   throttledBuy: () => void;
 
