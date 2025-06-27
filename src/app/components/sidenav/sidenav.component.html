@@ -1,4 +1,7 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container
+  class="sidenav-container"
+  style="background-color: transparent"
+>
   <mat-sidenav
     #drawer
     [mode]="'over'"
@@ -8,7 +11,7 @@
   >
     <app-checkoutpage></app-checkoutpage>
   </mat-sidenav>
-  <mat-sidenav-content style="background-color: white; padding: 0.5rem">
+  <mat-sidenav-content style="background-color: transparent; padding: 0.5rem">
     <button type="button" class="btn" title="Cart" (click)="drawer.toggle()">
       <div class="cart-wrapper position-relative">
         <fa-icon [icon]="cartIcon" class="fs-3"></fa-icon>

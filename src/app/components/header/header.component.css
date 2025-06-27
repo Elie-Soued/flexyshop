@@ -1,0 +1,27 @@
+.header {
+  background-image: url('/headers.png');
+  background-size: cover;
+  background-position: center;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+
+  position: relative;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
