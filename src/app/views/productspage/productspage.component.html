@@ -21,12 +21,16 @@
 
       <div class="col-12 col-md-4 text-center text-md-end">
         <div>
-          <button class="btn btn-light m-1" (click)="addItem(product)">
+          <button
+            class="btn btn-light m-1"
+            (click)="addItem(product)"
+            (mousedown)="onMouseDown($event)"
+          >
             Buy
           </button>
           <a
             [routerLink]="['/', section, product.id]"
-            class="btn btn-light m-1"
+            class="btn btn-light m-1 border:0"
           >
             View
           </a>

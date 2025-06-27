@@ -51,4 +51,8 @@ export class ProductspageComponent implements OnInit {
       );
     }
   }
+
+  onMouseDown(event: MouseEvent) {
+    event.preventDefault();
+  }
 }
