@@ -215,6 +215,19 @@ const cart = [
   },
 ];
 
+const outOfStockCart = [
+  {
+    id: 17,
+    buyCount: 1,
+    price: 1.99,
+    title: 'Apple',
+    thumbnail: 'https://flexyshopimages.pilexlaflex.com/images/16.webp',
+    warrantyInformation: '1 week warranty',
+    returnPolicy: 'No return policy',
+    isOutOfStock: true,
+  },
+];
+
 const categoryName: { [key: string]: string } = {
   beauty: 'Beauty',
   fragrances: 'Fragrances',
@@ -242,4 +255,4 @@ const categoryName: { [key: string]: string } = {
   'womens-watches': "Women's watches",
 };
 
-export { productsMock, productsMock2, cart, categoryName };
+export { productsMock, productsMock2, cart, categoryName, outOfStockCart };

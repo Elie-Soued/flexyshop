@@ -1,11 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { CartcontentComponent } from './cartcontent.component';
-import { cart } from '../../../mockData';
+import { cart, outOfStockCart } from '../../../mockData';
 import { of } from 'rxjs';
 import { provideHttpClient } from '@angular/common/http';
 import { ItemService } from '../../../services/item.service';
 import { ItemOutOfStock } from '../../../store/store.actions';
+import { By } from '@angular/platform-browser';
 
 describe('CartcontentComponent', () => {
   let component: CartcontentComponent;
@@ -41,20 +42,70 @@ describe('CartcontentComponent', () => {
     fixture.detectChanges();
   });
 
-  it('Make sure component is correctly rendered', () => {
-    //write test
-  });
-
   it('make sure out of stock label is displayed if there is no more item is stock and disabled the add button', () => {
-    //write test
+    component.cart = outOfStockCart;
+    fixture.detectChanges();
+
+    const outOfStockBadge = fixture.debugElement.query(
+      By.css('[id="17-outOfStock"]')
+    ).nativeElement;
+
+    expect(outOfStockBadge).toBeTruthy();
   });
 
   it('make sure out of stock label is removed if there are items is stock and enable the add button', () => {
-    //write test
+    component.cart = cart;
+    component.reduceItemBuyCount(cart[0]);
+    fixture.detectChanges();
+    const outOfStockBadge = fixture.debugElement.query(
+      By.css('[id="16-outOfStock"]')
+    );
+
+    expect(outOfStockBadge).toBeFalsy();
   });
 
   it('make sure the reduceElement button is disabled if the stock is equal to 1', () => {
-    //write test
+    component.cart = [
+      {
+        id: 16,
+        buyCount: 1,
+        price: 1.99,
+        title: 'Apple',
+        thumbnail: 'https://flexyshopimages.pilexlaflex.com/images/16.webp',
+        warrantyInformation: '1 week warranty',
+        returnPolicy: 'No return policy',
+        isOutOfStock: false,
+      },
+    ];
+
+    fixture.detectChanges();
+
+    const reduceItemBuyCountBtn = fixture.debugElement.query(
+      By.css('[id="16-reduceItemBuyCountBtn"]')
+    ).nativeElement;
+
+    expect(reduceItemBuyCountBtn.disabled).toBeTruthy();
+
+    component.cart = [
+      {
+        id: 16,
+        buyCount: 2,
+        price: 1.99,
+        title: 'Apple',
+        thumbnail: 'https://flexyshopimages.pilexlaflex.com/images/16.webp',
+        warrantyInformation: '1 week warranty',
+        returnPolicy: 'No return policy',
+        isOutOfStock: false,
+      },
+    ];
+
+    fixture.detectChanges();
+
+    const reduceItemBuyCountBtn2 = fixture.debugElement.query(
+      By.css('[id="16-reduceItemBuyCountBtn"]')
+    ).nativeElement;
+
+    expect(reduceItemBuyCountBtn2.disabled).toBeFalsy();
   });
 
   it('Make sure AddItem is correctly executed', () => {
