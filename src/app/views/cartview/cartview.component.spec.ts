@@ -25,7 +25,7 @@ describe('CheckoutpageComponent', () => {
     }).compileComponents();
   });
 
-  it('Make sure the checkoutPage is correctly rendered', () => {
+  it('Make sure the cartView is correctly rendered', () => {
     //Prepare
     fixture = TestBed.createComponent(CartViewComponent);
     component = fixture.componentInstance;
@@ -51,5 +51,17 @@ describe('CheckoutpageComponent', () => {
     const emptyCart = fixture.debugElement.query(By.css('#emptyCart'));
     expect(invoiceTable).toBeFalsy();
     expect(emptyCart).toBeTruthy();
+  });
+
+  it('Make sure checkout is correctly executed', () => {
+    //write test
+  });
+
+  it('Make sure clearCart is correctly executed', () => {
+    //write test
+  });
+
+  it('Make sure close cart is correctly executed', () => {
+    //write test
   });
 });

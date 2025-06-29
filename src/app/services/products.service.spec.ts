@@ -37,4 +37,8 @@ describe('ProductsService', () => {
     const selectedProduct = service.getProduct(productsMock.products, 1);
     expect(selectedProduct).toEqual(productsMock.products[0]);
   });
+
+  it('make sure checkout is correctly executed', () => {
+    //write test
+  });
 });

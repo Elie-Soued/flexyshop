@@ -40,6 +40,7 @@ export class SidenavComponent {
 
   ngOnInit(): void {
     this.utlilsService.closeSideNav$.subscribe(() => {
+      console.log('here');
       this.drawer.close();
     });
 

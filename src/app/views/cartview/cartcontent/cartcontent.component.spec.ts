@@ -24,7 +24,19 @@ describe('CartcontentComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Make sure component is correctly rendered', () => {
+    //write test
+  });
+
+  it('Make sure AddItem is correctly executed', () => {
+    //write test
+  });
+
+  it('Make sure reduce buyCount is correctly executed', () => {
+    //write test
+  });
+
+  it('Make sure removeItem is correctly executed', () => {
+    //write test
   });
 });

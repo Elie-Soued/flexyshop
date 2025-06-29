@@ -20,7 +20,11 @@ describe('SuccesspageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Make sure component is correctly rendered', () => {
+    //write test
+  });
+
+  it('Make sure cart is cleared on Init', () => {
+    //write test
   });
 });

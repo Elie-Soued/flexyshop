@@ -1,18 +1,12 @@
-<mat-sidenav-container
-  class="sidenav-container"
-  style="background-color: transparent"
->
-  <mat-sidenav
-    #drawer
-    [mode]="'over'"
-    position="end"
-    [disableClose]="false"
-    fixedInViewport
-  >
-    <app-cart-view></app-cart-view>
-  </mat-sidenav>
+<mat-sidenav-container class="sidenav-container">
   <mat-sidenav-content style="background-color: transparent; padding: 0.5rem">
-    <button type="button" class="btn" title="Cart" (click)="drawer.toggle()">
+    <button
+      type="button"
+      class="btn"
+      title="Cart"
+      id="openCart"
+      (click)="drawer.toggle()"
+    >
       <div class="cart-wrapper position-relative">
         <fa-icon [icon]="cartIcon" class="fs-3"></fa-icon>
         @if(cart && cart.length){
@@ -25,4 +19,13 @@
       </div>
     </button>
   </mat-sidenav-content>
+  <mat-sidenav
+    #drawer
+    [mode]="'over'"
+    position="end"
+    [disableClose]="false"
+    fixedInViewport
+  >
+    <app-cart-view></app-cart-view>
+  </mat-sidenav>
 </mat-sidenav-container>

@@ -1,12 +1,11 @@
-<nav
+<header
   class="d-flex flex-column flex-md-row justify-content-between gap-3 py-3 shadow-sm bg-white w-100 header"
   aria-label="Main navigation"
 >
-  <!-- Left: Logo and Slogan -->
   <div
     class="d-flex flex-column flex-md-row align-items-center gap-2 p-3 text-center text-md-start"
   >
-    <a [routerLink]="['/']">
+    <a [routerLink]="['/']" id="logo">
       <img
         src="/flexyshopTransparent.png"
         alt="Flexyshop Logo"
@@ -16,12 +15,10 @@
     </a>
     <h5 class="mb-0 text-muted mt-2 mt-md-0">Shop smart. Stay flex.</h5>
   </div>
-
-  <!-- Right: Icons -->
   <div
     class="d-flex justify-content-center justify-content-md-end align-items-center p-3 gap-2"
   >
-    <a [routerLink]="['/']">
+    <a [routerLink]="['/']" id="home">
       <button type="button" class="btn" title="Home">
         <fa-icon [icon]="home" class="fs-3"></fa-icon>
       </button>
@@ -29,4 +26,4 @@
 
     <app-sidenav></app-sidenav>
   </div>
-</nav>
+</header>

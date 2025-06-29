@@ -66,4 +66,12 @@ describe('ProductspageComponent', () => {
     // Assert
     expect(component.categoryProducts).toEqual([productsMock2.products[1]]);
   });
+
+  it('make sure add Item is working correctly', () => {
+    //write test
+  });
+
+  it('Make sure navigation is done to the correct product', () => {
+    // write test
+  });
 });

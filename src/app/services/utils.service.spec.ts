@@ -66,4 +66,8 @@ describe('UtilsService', () => {
     const grandTotal = service.getgrandTotal(cart);
     expect(grandTotal).toEqual(1901.98);
   });
+
+  it('make sure closeSideNavView is correctly executed', () => {
+    //write test
+  });
 });

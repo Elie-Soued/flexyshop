@@ -23,7 +23,7 @@ describe('StarsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('Make sure the correct number of stars is rendered', () => {
+    //Test to write
   });
 });

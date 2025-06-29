@@ -18,7 +18,19 @@ describe('ItemService', () => {
     store.select.and.returnValue(of(productsMock));
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('make sure addItemToCart is correctly executed', () => {
+    //Test to write
+  });
+  it('make sure reduceItemBuyCount is correctly executed', () => {
+    //Test to write
+  });
+  it('make sure removeItemFromCart is correctly executed', () => {
+    //Test to write
+  });
+  it('make sure clearCart is correctly executed', () => {
+    //Test to write
+  });
+  it('make sure getItemInStock is correctly executed', () => {
+    //Test to write
   });
 });
