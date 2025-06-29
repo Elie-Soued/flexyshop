@@ -165,14 +165,20 @@ const cart = [
     buyCount: 1,
     price: 1.99,
     title: 'Apple',
-    image: 'https://flexyshopimages.pilexlaflex.com/images/16.webp',
+    thumbnail: 'https://flexyshopimages.pilexlaflex.com/images/16.webp',
+    warrantyInformation: '',
+    returnPolicy: '',
+    isOutOfStock: false,
   },
   {
     id: 11,
     buyCount: 1,
     price: 1899.99,
     title: 'Annibale Colombo Bed',
-    image: 'https://flexyshopimages.pilexlaflex.com/images/11.webp',
+    thumbnail: 'https://flexyshopimages.pilexlaflex.com/images/11.webp',
+    warrantyInformation: '',
+    returnPolicy: '',
+    isOutOfStock: false,
   },
 ];
 

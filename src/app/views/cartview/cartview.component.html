@@ -9,6 +9,7 @@
         class="btn"
         title="Checkout"
         style="border: none"
+        id="closeView"
         (click)="closeCheckoutView()"
       >
         <fa-icon [icon]="close" class="fs-3"></fa-icon>
@@ -18,7 +19,7 @@
 
   @if(cart.length){
   <div class="d-flex column justify-content-end">
-    <button class="btn btn-light" (click)="clearCart()">
+    <button class="btn btn-light" (click)="clearCart()" id="clearCart">
       Clear all
       <fa-icon [icon]="deleteAll"></fa-icon>
     </button>
