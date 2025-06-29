@@ -9,7 +9,12 @@ import {
   setOriginalStock,
 } from '../store/store.actions';
 import { ProductsService } from './products.service';
-import { type CartItem, type AppState, type Cart } from '../interface';
+import {
+  type CartItem,
+  type AppState,
+  type Cart,
+  type Product,
+} from '../interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +25,7 @@ export class ItemService {
     private productService: ProductsService
   ) {}
 
-  addItemToCart(item: any): void {
+  addItemToCart(item: CartItem | Product): void {
     this.store.dispatch(removeFromStock({ id: item.id }));
     this.store.dispatch(
       addToCart({
