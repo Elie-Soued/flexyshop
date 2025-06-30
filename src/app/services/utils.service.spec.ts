@@ -60,6 +60,9 @@ describe('UtilsService', () => {
   it('Make sure getRange creates an array with a specific length', () => {
     const range = service.getRange(3);
     expect(range.length).toEqual(3);
+
+    const range2 = service.getRange(3, 5);
+    expect(range2.length).toEqual(2);
   });
 
   it('make sure grandToal is correctly calculated', () => {

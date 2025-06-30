@@ -1,7 +1,7 @@
 <div>
   @for (i of utilsService.getRange(product.rating); track i) {
   <fa-icon [icon]="star" class="goldenStar"></fa-icon>
-  } @for (i of utilsService.getRange(5 - product.rating); track i) {
+  } @for (i of utilsService.getRange(product.rating, 5); track i) {
   <fa-icon [icon]="star" class="regularStar"></fa-icon>
   }
 </div>

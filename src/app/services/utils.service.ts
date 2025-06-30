@@ -22,8 +22,12 @@ export class UtilsService {
     };
   }
 
-  getRange(n: number): number[] {
-    return Array.from({ length: Math.floor(n) }, (v, i) => i);
+  getRange(n: number, substract?: number): number[] {
+    const flooredNum = Math.floor(n);
+    return Array.from(
+      { length: substract ? substract - flooredNum : flooredNum },
+      (v, i) => i
+    );
   }
 
   getgrandTotal(cart: Cart): number {
