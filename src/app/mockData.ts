@@ -255,4 +255,19 @@ const categoryName: { [key: string]: string } = {
   'womens-watches': "Women's watches",
 };
 
-export { productsMock, productsMock2, cart, categoryName, outOfStockCart };
+const categoriesExtracted = [
+  {
+    name: 'beauty',
+    title: 'Beauty',
+    thumbnail: 'https://flexyshopimages.pilexlaflex.com/images/1.webp',
+  },
+];
+
+export {
+  productsMock,
+  productsMock2,
+  cart,
+  categoryName,
+  outOfStockCart,
+  categoriesExtracted,
+};

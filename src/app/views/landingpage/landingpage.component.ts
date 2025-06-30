@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { setProducts } from '../../store/store.actions';
 import { RouterModule } from '@angular/router';
@@ -9,7 +8,6 @@ import { DataService } from '../../services/data.service';
 import {
   type Product,
   type CategoryWithImage,
-  type Cart,
   type AppState,
 } from '../../interface';
 
@@ -21,9 +19,6 @@ import {
 })
 export class LandingpageComponent implements OnInit {
   categories: CategoryWithImage[] = [];
-  cartIcon = faCartShopping;
-  cart: Cart = [];
-  currentYear = new Date().getFullYear();
 
   constructor(
     private store: Store<AppState>,
@@ -49,12 +44,6 @@ export class LandingpageComponent implements OnInit {
             error: (err) => console.error('Error fetching products:', err),
           });
         }
-      });
-
-    this.store
-      .select((state: AppState) => state.cart)
-      .subscribe(({ items }) => {
-        this.cart = items;
       });
   }
 }

@@ -25,7 +25,7 @@ export class ProductsService {
     )!;
   }
 
-  checkout(amount: number) {
+  checkout(amount: number): void {
     this.http
       .post<{ url: string }>(environment.BASE_URL, {
         amount,

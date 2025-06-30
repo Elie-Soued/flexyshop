@@ -11,7 +11,7 @@ import {
   tick,
   fakeAsync,
 } from '@angular/core/testing';
-import { productsMock } from '../../mockData';
+import { productsMock, categoriesExtracted } from '../../mockData';
 
 describe('LandingpageComponent', () => {
   let component: LandingpageComponent;
@@ -20,14 +20,6 @@ describe('LandingpageComponent', () => {
   let productService: jasmine.SpyObj<ProductsService>;
   let dataService: jasmine.SpyObj<DataService>;
   let store: jasmine.SpyObj<Store>;
-
-  const categoriesExtracted = [
-    {
-      name: 'beauty',
-      title: 'Beauty',
-      thumbnail: 'https://flexyshopimages.pilexlaflex.com/images/1.webp',
-    },
-  ];
 
   beforeEach(async () => {
     productService = jasmine.createSpyObj('ProductService', ['getProducts']);
@@ -85,6 +77,7 @@ describe('LandingpageComponent', () => {
 
   it('If products are in the store, the categories are directly created and displayed', fakeAsync(() => {
     //Arrange
+    store.select.and.returnValue(of(productsMock));
     dataService.extractCategories.and.returnValue(categoriesExtracted);
 
     //Act
