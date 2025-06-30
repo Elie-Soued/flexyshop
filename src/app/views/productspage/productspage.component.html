@@ -7,16 +7,23 @@
       style="background-color: white"
     >
       <div class="col-12 col-md-2 text-center mb-3 mb-md-0">
-        <img
-          [src]="product.thumbnail"
-          alt="{{ product.title }}"
-          class="img-fluid"
-          style="max-height: 100px; object-fit: contain"
-        />
+        <a [routerLink]="['/', section, product.id]">
+          <img
+            [src]="product.thumbnail"
+            alt="{{ product.title }}"
+            class="img-fluid"
+            style="max-height: 100px; object-fit: contain"
+          />
+        </a>
       </div>
 
       <div class="col-12 col-md-6 text-center text-md-start">
-        <h5 class="fw-semibold mb-0">{{ product.title }}</h5>
+        <a
+          [routerLink]="['/', section, product.id]"
+          class="text-dark text-decoration-none"
+        >
+          <h5 class="fw-semibold mb-0">{{ product.title }}</h5>
+        </a>
         <app-stars [product]="product"></app-stars>
       </div>
 
