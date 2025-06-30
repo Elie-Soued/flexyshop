@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { StarsComponent } from './stars.component';
 
 describe('StarsComponent', () => {
@@ -18,12 +17,28 @@ describe('StarsComponent', () => {
       comment: '',
       date: '',
       reviewerEmail: '',
-      reviewName: '',
+      reviewerName: '',
     };
     fixture.detectChanges();
   });
 
   it('Make sure the correct number of stars is rendered', () => {
-    //Test to write
+    component.product = {
+      rating: 2,
+      comment: '',
+      date: '',
+      reviewerEmail: '',
+      reviewerName: '',
+    };
+
+    fixture.detectChanges();
+
+    const goldenStars =
+      fixture.nativeElement.querySelectorAll('.goldenStar').length;
+    const regularStars =
+      fixture.nativeElement.querySelectorAll('.regularStar').length;
+
+    expect(regularStars).toBe(3);
+    expect(goldenStars).toBe(2);
   });
 });
