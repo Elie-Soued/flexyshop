@@ -6,14 +6,21 @@ import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { productsMock, productsMock2 } from '../../mockData';
 import { provideHttpClient } from '@angular/common/http';
+import { ItemService } from '../../services/item.service';
+import { type Product } from '../../interface';
 
 describe('ProductspageComponent', () => {
   let component: ProductspageComponent;
   let fixture: ComponentFixture<ProductspageComponent>;
   let store: jasmine.SpyObj<Store>;
+  let itemService: jasmine.SpyObj<ItemService>;
 
   beforeEach(async () => {
     store = jasmine.createSpyObj('Store', ['select']);
+    itemService = jasmine.createSpyObj('ItemService', [
+      'getItemInStock',
+      'addItemToCart',
+    ]);
     let route = {
       params: of({ name: 'beauty' }),
     } as any;
@@ -24,16 +31,21 @@ describe('ProductspageComponent', () => {
         provideHttpClient(),
         { provide: Store, useValue: store },
         { provide: ActivatedRoute, useValue: route },
+        { provide: ItemService, useValue: itemService },
       ],
     }).compileComponents();
   });
 
-  it('Make sure the productsPage component is correctly rendered', () => {
-    // Prepare
+  const prepareComponent = (productsMock: { products: Product[] }) => {
     fixture = TestBed.createComponent(ProductspageComponent);
     component = fixture.componentInstance;
     store.select.and.returnValue(of(productsMock));
     fixture.detectChanges();
+  };
+
+  it('Make sure the productsPage component is correctly rendered', () => {
+    // Prepare
+    prepareComponent(productsMock);
 
     // Assert
     const categories = fixture.debugElement.query(By.css('#categorySection'));
@@ -44,10 +56,7 @@ describe('ProductspageComponent', () => {
 
   it('Make sure the error Message is shown if no product is displayed', () => {
     // Prepare
-    fixture = TestBed.createComponent(ProductspageComponent);
-    component = fixture.componentInstance;
-    store.select.and.returnValue(of({ products: [] }));
-    fixture.detectChanges();
+    prepareComponent({ products: [] });
 
     // Assert
     const categories = fixture.debugElement.query(By.css('#categorySection'));
@@ -58,20 +67,23 @@ describe('ProductspageComponent', () => {
 
   it('make sure the correct product is displayed', () => {
     // Prepare
-    fixture = TestBed.createComponent(ProductspageComponent);
-    component = fixture.componentInstance;
-    store.select.and.returnValue(of(productsMock2));
-    fixture.detectChanges();
+    prepareComponent(productsMock2);
 
     // Assert
     expect(component.categoryProducts).toEqual([productsMock2.products[1]]);
   });
 
   it('make sure add Item is working correctly', () => {
-    //write test
+    prepareComponent(productsMock2);
+
+    itemService.getItemInStock.and.returnValue(4);
+    component.addItem(productsMock2.products[1]);
+    expect(itemService.addItemToCart).toHaveBeenCalledWith(
+      productsMock2.products[1]
+    );
   });
 
   it('Make sure navigation is done to the correct product', () => {
-    // write test
+    //write test
   });
 });
