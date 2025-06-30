@@ -1,6 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { ProductspageComponent } from './productspage.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, provideRouter, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
@@ -8,12 +13,16 @@ import { productsMock, productsMock2 } from '../../mockData';
 import { provideHttpClient } from '@angular/common/http';
 import { ItemService } from '../../services/item.service';
 import { type Product } from '../../interface';
+import { Location } from '@angular/common';
+import { ProductdetailpageComponent } from '../productdetailspage/productdetailpage.component';
 
 describe('ProductspageComponent', () => {
   let component: ProductspageComponent;
   let fixture: ComponentFixture<ProductspageComponent>;
   let store: jasmine.SpyObj<Store>;
   let itemService: jasmine.SpyObj<ItemService>;
+  let location: Location;
+  let router: Router;
 
   beforeEach(async () => {
     store = jasmine.createSpyObj('Store', ['select']);
@@ -29,6 +38,12 @@ describe('ProductspageComponent', () => {
       imports: [ProductspageComponent],
       providers: [
         provideHttpClient(),
+        provideRouter([
+          {
+            path: 'beauty/2',
+            component: ProductdetailpageComponent,
+          },
+        ]),
         { provide: Store, useValue: store },
         { provide: ActivatedRoute, useValue: route },
         { provide: ItemService, useValue: itemService },
@@ -37,6 +52,8 @@ describe('ProductspageComponent', () => {
   });
 
   const prepareComponent = (productsMock: { products: Product[] }) => {
+    location = TestBed.inject(Location);
+    router = TestBed.inject(Router);
     fixture = TestBed.createComponent(ProductspageComponent);
     component = fixture.componentInstance;
     store.select.and.returnValue(of(productsMock));
@@ -83,7 +100,15 @@ describe('ProductspageComponent', () => {
     );
   });
 
-  it('Make sure navigation is done to the correct product', () => {
-    //write test
-  });
+  it('Make sure navigation is done to the correct product', fakeAsync(() => {
+    prepareComponent(productsMock);
+    const navigationButton = fixture.debugElement.query(
+      By.css('[id="2-navigate-productDetails"]')
+    ).nativeElement;
+
+    navigationButton.click();
+    tick();
+
+    expect(location.path()).toBe('/beauty/2');
+  }));
 });
