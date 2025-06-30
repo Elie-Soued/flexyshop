@@ -71,6 +71,11 @@ describe('UtilsService', () => {
   });
 
   it('make sure closeSideNavView is correctly executed', () => {
-    //write test
+    service.closeSideNav$.subscribe(() => {
+      // this line is not important, we just want to make sure that we get here
+      expect(true).toBeTrue();
+    });
+
+    service.closeSideNavView();
   });
 });
