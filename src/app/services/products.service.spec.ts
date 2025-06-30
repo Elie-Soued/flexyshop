@@ -39,6 +39,13 @@ describe('ProductsService', () => {
   });
 
   it('make sure checkout is correctly executed', () => {
-    //write test
+    // Here we actually need an integration test
+    // service.checkout(1000);
+    // const req = httpClient.expectOne(`${environment.BASE_URL}`);
+    // expect(req.request.method).toBe('POST');
+    // expect(req.request.body).toEqual({
+    //   amount: 1000,
+    // });
+    // req.flush({ url: 'https://checkout.stripe.com' });
   });
 });
