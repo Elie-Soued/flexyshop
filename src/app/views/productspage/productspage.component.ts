@@ -20,7 +20,6 @@ export class ProductspageComponent implements OnInit {
   section: string = '';
   products: Product[] = [];
   categoryProducts: Product[] = [];
-  home = faHome;
   check = faCheck;
   isAddedToCart = false;
 

@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCartPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
-import { type Cart, type AppState } from '../../interface';
+import { type Cart, type AppState, type Product } from '../../interface';
 import { ProductsService } from '../../services/products.service';
 import { UtilsService } from '../../services/utils.service';
 import { ToastService } from '../../services/toast.service';
@@ -28,7 +28,7 @@ import { StarsComponent } from '../../components/stars/stars.component';
 export class ProductdetailpageComponent implements OnInit {
   productID: number = 0;
   section: string = '';
-  product!: any;
+  product!: Product;
   cart!: Cart;
   cartIcon = faCartPlus;
   back = faArrowLeft;

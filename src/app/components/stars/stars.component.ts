@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UtilsService } from '../../services/utils.service';
-import { type Reviews, type Product } from '../../interface';
+import { type Review, type Product } from '../../interface';
 
 @Component({
   selector: 'app-stars',
@@ -12,7 +12,7 @@ import { type Reviews, type Product } from '../../interface';
 })
 export class StarsComponent {
   star = faStar;
-  @Input({ required: true }) product!: Reviews | Product;
+  @Input({ required: true }) product!: Review | Product;
 
   constructor(public utilsService: UtilsService) {}
 }
